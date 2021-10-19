@@ -1,21 +1,13 @@
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Box from '@material-ui/core/Box';
 import React from "react";
-import Footer from "../../components/common/footer";
-import Head from "next/head";
-import Header from "../../components/common/header";
 import PageHeader from "../../components/common/pageheader";
-import Typography from '@material-ui/core/Typography';
-import Link from 'next/link'
-
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
-import Hidden from '@material-ui/core/Hidden';
 import ActionMenu from "../../components/common/actionmenu";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import ClaimsTable from "../../components/vault/claims";
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({

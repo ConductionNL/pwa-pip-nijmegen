@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
 import ActionMenu from "../../components/common/actionmenu";
-import Hidden from "@material-ui/core/Hidden";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
 import ProductCard from "../../components/products/card";
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 function Index() {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import {Link} from "@mui/material";
 import {useGet} from "restful-react";
 import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
 

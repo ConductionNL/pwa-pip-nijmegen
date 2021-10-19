@@ -1,19 +1,12 @@
 import {useRouter} from 'next/router'
-import Button from "@material-ui/core/Button";
 import React from "react";
-import Link from 'next/link'
-
-import Header from "../../components/common/header";
-import Container from "@material-ui/core/Container";
-import Footer from "../../components/common/footer";
-import Typography from '@material-ui/core/Typography';
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
 import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
 import {useGet, Poll, Get} from "restful-react";
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const Product = () => {
   const title = "Trouwen | 95128942"

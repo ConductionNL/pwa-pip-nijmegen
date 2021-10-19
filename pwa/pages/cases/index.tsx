@@ -1,14 +1,13 @@
 import React from "react";
 import PageHeader from "../../components/common/pageheader";
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
-import Hidden from '@material-ui/core/Hidden';
 import ActionMenu from "../../components/common/actionmenu";
 import CasesTable from "../../components/cases/table";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CollapsibleTable from "../../components/cases/collapsibleTable";
-import {makeStyles} from "@material-ui/core/styles";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
+import makeStyles from "@mui/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,12 +1,11 @@
 import React, {ReactNode} from "react";
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
 import ActionMenu from "../../components/common/actionmenu";
-import Hidden from "@material-ui/core/Hidden";
 import PageHeader from "../../components/common/pageheader";
-import {Tab, Tabs, Typography, Box} from "@material-ui/core";
 import PaperCard from "../../components/common/paperCard";
-
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 function Index() {
 
