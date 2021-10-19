@@ -10,18 +10,20 @@ import {useRouter} from "next/router";
 import PaperCard from "../components/common/paperCard";
 import {useUserContext} from "../components/context/userContext";
 import {useAppContext} from "../components/context/state";
+import { Typography } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
 
 const Welcome = () => (
   <>
-    <Layout title="Welkom bij verhuizen 's Hertogenbosch!" description="waar kan ik deze description zien">
+    <Layout title="Welkom bij Mijn Omgeving Nijmegen" description="waar kan ik deze description zien">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={8} md={6}>
-          <PaperCard
-            title="Verhuizen"
-            description="Het doorgeven van een verhuizing."
-            link="/moving"
-            linkText="Lees meer "
-          />
+        <Grid item xs={12}>
+          <Typography variant="h3" component="h3">
+            Welkom op Mijn Omgeving!
+            <Button>
+              Test
+              </Button>
+          </Typography>
         </Grid>
       </Grid>
     </Layout>
