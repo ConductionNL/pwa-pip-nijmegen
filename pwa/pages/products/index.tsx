@@ -37,7 +37,7 @@ function Index() {
             <ActionMenu />
           </Grid>
         </Hidden>
-        <Grid item sm={12} md={9}>
+        <Grid item sm={12} md={9} style={{marginTop: 20}}>
           <PageHeader title={title} />
           <Box paddingTop={2} paddingBottom={2}>
             <p>{description}</p>
