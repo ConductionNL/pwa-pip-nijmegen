@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#FFFFFF" 
+      main: "#157c68",
     },
     secondary: {
       main: "#a80a2d"
@@ -32,6 +32,15 @@ const theme = createTheme({
       primary: "#000000"
     }
   },
+  components: {
+      MuiButton: {
+        styleOverrides: {
+          outlined: {
+            backgroundColor: "green"
+          }
+        }
+      }
+  }
 });
 
 
