@@ -1,72 +1,57 @@
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Box from '@material-ui/core/Box';
 import React from "react";
+import Footer from "../../components/common/footer";
+import Head from "next/head";
+import Header from "../../components/common/header";
+import PageHeader from "../../components/common/pageheader";
+import Typography from '@material-ui/core/Typography';
+import Link from 'next/link'
+
 import Layout from "../../components/common/layout";
 import Grid from "@material-ui/core/Grid";
+import Hidden from '@material-ui/core/Hidden';
 import ActionMenu from "../../components/common/actionmenu";
-import Hidden from "@material-ui/core/Hidden";
-import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
-import {makeStyles, Theme} from "@material-ui/core/styles";
-import PaperCard from "../../components/common/paperCard";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import ClaimsTable from "../../components/vault/claims";
 
-const useStyles = makeStyles({
-  marginTop: {
-    marginTop: 20,
+import {makeStyles} from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minWidth: '100%',
+    backgroundColor: theme.palette.background.paper,
   },
-});
-
-// Uw kluis is een plaats waar u persoonsinformatie kunt opslaan en optioneel kunt delen, dit kunnen
-// bewijzen zijn of claims (bijv. bewijs van verblijf) of documenten die nodig zijn voor een bepaalde
-// regeling.
+  gridMarginTop: {
+    marginTop: '20px',
+  }
+}));
 
 function Index() {
   const classes = useStyles();
-  const title = 'Mijn Datakluis';
+
+  const title = 'Mijn kluis';
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
-
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Hidden smDown>
           <Grid item md={3}>
-            <ActionMenu/>
+            <ActionMenu />
           </Grid>
         </Hidden>
-        <Grid item sm={12} md={9} style={{marginTop: 20}}>
-          <PageHeader title={title}/>
-          <Box paddingTop={3} paddingBottom={2}>
+        <Grid item sm={12} md={9}>
+          <PageHeader title={title} />
+
+          <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Waardepapieren"
-                  description="In sommige gevallen heeft u bewijspapieren nodig, bijvoorbeeld een uittreksel van uw woonhistorie of een inkomens verklaring. U kunt deze tegenwoordig ook digitaal aanvragen, inzien en delen met organisaties."
-                  link="/claims"
-                  linkText="Bekijk waardepapieren"
-                />
-              </Grid>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Documenten"
-                  description="todo"
-                  link="/documents"
-                  linkText="Bekijk documenten"
-                />
-              </Grid>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Verwerkingen"
-                  secondaryTitle="Bron: Verwerkingen Register"
-                  description="De gemeente houdt nauwkeurig bij welke organisaties uw gegevens hebben gebruikt (verwerkt) en met wel doel dit was. Deze verwerkingen kunt u inzien via het verwerkingen register."
-                  link="/processes"
-                  linkText="Bekijk verwerkingen"
-                />
-              </Grid>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Machtigingen"
-                  description="todo"
-                  link="/authorizations"
-                  linkText="Bekijk machtigingen"
-                />
+              <Grid item xs={12}>
+                <Card className={classes.root}>
+                  <CardContent>
+                    <ClaimsTable/>
+                  </CardContent>
+                </Card>
               </Grid>
             </Grid>
           </Box>

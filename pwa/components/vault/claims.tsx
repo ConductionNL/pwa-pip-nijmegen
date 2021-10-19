@@ -1,52 +1,71 @@
 import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Button from "@material-ui/core/Button";
-import {Link} from "@material-ui/core";
+import Link from '@material-ui/core/Link';
+import {useGet} from "restful-react";
+import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
 
-function createData(name, reference) {
-  return {name, reference};
-}
+export default function ClaimsTable({claims = null}) {
 
-const rows = [
-  createData('Lorem', '95128942'),
-  createData('Ipsum', '12938149'),
-];
+  if (claims == null) {
+    var {data: claims} = useGet({
+      path: "/claims"
+    });
+  }
 
+  console.log('claims:');
+  console.log(claims);
 
-export default function ClaimTable() {
+  /* lets catch hydra */
+  if (claims != null && claims["results"] !== undefined) {
+    claims = claims["results"];
+
+    for (let i = 0; i < claims.length; i++) {
+      claims[i].id = claims[i].identificatie;
+    }
+  }
+
+  const columns = [
+    {field: 'name', headerName: 'Name', flex: 1},
+    {field: 'endpoint', headerName: 'Endpoint', flex: 1},
+    {field: 'route', headerName: 'Route', flex: 1},
+    {
+      field: 'id',
+      headerName: 'View', renderCell: (params: GridRenderCellParams) => (
+        <strong>
+          <Link
+            href={"/claims/" + params.value}
+          >
+            View
+          </Link>
+        </strong>
+      ), flex: 1
+    }
+  ];
+
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Claim</TableCell>
-            <TableCell align="right">Reference</TableCell>
-            {/*<TableCell align="right"></TableCell>*/}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell align="left">{row.name}</TableCell>
-              <TableCell align="right">{row.reference}</TableCell>
-              {/*<TableCell align="right">*/}
-              {/*  <Button variant="outlined" color="primary">*/}
-              {/*    <Link href="/cases/1">*/}
-              {/*      Bekijken*/}
-              {/*    </Link>*/}
-              {/*  </Button>*/}
-              {/*</TableCell>*/}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div style={{height: 400, width: '100%'}}>
+      {claims ? (
+          <DataGrid
+            rows={claims}
+            columns={columns}
+            pageSize={20}
+            rowsPerPageOptions={[100]}
+            disableSelectionOnClick
+          />
+        )
+        :
+        (
+          <DataGrid
+            rows={[]}
+            loading={true}
+            columns={columns}
+            pageSize={100}
+            rowsPerPageOptions={[100]}
+            checkboxSelection
+            disableSelectionOnClick
+          />
+        )
+      }
+    </div>
   );
 }
