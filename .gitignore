@@ -1,0 +1,7 @@
+/helm/charts/*
+!/helm/charts/.gitignore
+/certs
+.idea/
+
+
+commonground-gateway/
