@@ -12,6 +12,7 @@ import Layout from "../../components/common/layout";
 import Grid from "@material-ui/core/Grid";
 import Hidden from '@material-ui/core/Hidden';
 import ActionMenu from "../../components/common/actionmenu";
+// import ArrangementsCards from "../../components/arrangements/cards";
 import {makeStyles} from "@material-ui/core/styles";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import {Link} from "@material-ui/core";
@@ -49,6 +50,7 @@ function Index() {
             Om uw regelingen te personaliseren moet u eerst inloggen! — Klik <strong><Link href={"/user"}>hier</Link></strong> om in te loggen.
           </Alert>
 
+          {/*<ArrangementsCards/>*/}
 
         </Grid>
       </Grid>

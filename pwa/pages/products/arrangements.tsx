@@ -49,6 +49,7 @@ function Index() {
             Om uw regelingen te personaliseren moet u eerst inloggen! — Klik <strong><Link href={"/user"}>hier</Link></strong> om in te loggen.
           </Alert>
 
+          {/*<ArrangementsCards/>*/}
 
         </Grid>
       </Grid>
