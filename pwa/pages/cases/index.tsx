@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Index() {
   const classes = useStyles();
-  const title = 'Lopende zaken';
-  const zakenHref = '/products/' + Math.floor(Math.random() * 10);
+  const title = 'Mijn Zaken';
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
@@ -30,9 +29,9 @@ function Index() {
             <ActionMenu />
           </Grid>
         </Hidden>
-        <Grid item sm={12} md={9} style={{marginTop: 20}}>
+        <Grid item sm={12} md={9}>
           <PageHeader title={title} />
-          <Grid container spacing={2}>
+          <Grid container spacing={2} style={{marginTop: 20}}>
             <Grid item xs={12}>
               <Card className={classes.root}>
                 <CardContent>
@@ -41,15 +40,6 @@ function Index() {
               </Card>
             </Grid>
           </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Card className={classes.root}>
-                  <CardContent>
-                    <CollapsibleTable/>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
         </Grid>
       </Grid>
     </Layout>
