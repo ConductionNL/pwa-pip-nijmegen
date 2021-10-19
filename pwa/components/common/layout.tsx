@@ -23,10 +23,13 @@ const useStyles = makeStyles((theme) => ({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#001759" 
+      main: "#FFFFFF" 
     },
     secondary: {
-      main: "#ddc999"
+      main: "#a80a2d"
+    },
+    text: {
+      primary: "#000000"
     }
   },
 });
