@@ -8,7 +8,7 @@ export default function Logo() {
       <Container>
         <div style={{margin: 'auto',marginBottom: '20px', marginTop: '10px', width: '400px'}}>
           <Link href="/">
-            <Image src="/logo_denbosch.svg" height={75} width={300} alt="Picture of the author"/>
+            <Image src="https://www.nijmegen.nl/typo3conf/ext/nijmegen_sitepackage/Resources/Public/Images/svg/beeldmerklabelrood.svg" height={75} width={300} alt="Picture of the author"/>
           </Link>
         </div>
       </Container>

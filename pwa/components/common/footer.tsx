@@ -32,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
+  footerImage: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      alignItems: "center",
+      justifyContent: "center"
+},
+  },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -73,22 +81,72 @@ export default function Footer() {
   let userContext = useUserContext();
 
   return (
-    <footer  className={classes.footerStyle}>
-      <Paper style={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
+    <footer>
+      <Paper style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation
           value={state['bottumNavigation']} onChange={handleChange}
           showLabels
           className={classes.sectionMobile}
         >
-          {
-            userContext.user !== null
-              ?
-              <BottomNavigationAction onClick={handleLogout} label="Logout" icon={<LogoutIcon/>}/>
-              :
-              <BottomNavigationAction onClick={handleLogin} label="Login" icon={<Login/>}/>
-          }
+
+          <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+          <BottomNavigationAction label="Klantvragen" icon={<SearchIcon />} />
+          <BottomNavigationAction label="Notificaties" icon={<NotificationsIcon />} />
+          <BottomNavigationAction label="Chatten" icon={<ChatIcon />} />
+          <BottomNavigationAction label="Logout" icon={<LogoutIcon />} />
         </BottomNavigation>
       </Paper>
+      <Box
+        px={{ xs: 3, sm: 10 }}
+        py={{ xs: 5, sm: 10 }}
+        bgcolor="#3A3A3A"
+        color="white"
+        className={classes.sectionDesktop}
+      >
+        <Container maxWidth="lg">
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={6}>
+              <Box borderBottom={1}>Help</Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Contact
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Support
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/" color="inherit">
+                  Privacy
+                </Link>
+              </Box>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <Box borderBottom={1}>Contact</Box>
+              <Box>Stadswinkel, Mariënburg 30
+              </Box>
+              <Box>
+                <Link href="tel:14 024" color="inherit">
+                  14 024
+                </Link>
+              </Box>
+              <Box>
+                <Link href="mailto:gemeente@nijmegen.nl" color="inherit">
+                  gemeente@nijmegen.nl
+                </Link>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+
+      <div className={classes.footerImage} style={{ backgroundColor: "#212121", paddingTop: "20px", paddingBottom: "20px"}}>
+        <img height="32px" width="150px" src="https://www.nijmegen.nl/typo3conf/ext/nijmegen_sitepackage/Resources/Public/Images/svg/beeldmerklabelwit.svg" />
+      </div>
     </footer>
   );
 }
