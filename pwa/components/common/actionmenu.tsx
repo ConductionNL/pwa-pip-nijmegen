@@ -41,12 +41,12 @@ export default function ActionMenu() {
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
 
-        <ListItem button onClick={() => router.push('/user')}>
-          <ListItemIcon>
-            <RadioButtonCheckedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/user')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <RadioButtonCheckedIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Home" />*/}
+        {/*</ListItem>*/}
         <ListItem button onClick={() => router.push('/products')}>
           <ListItemIcon>
             <ShoppingCartIcon />
@@ -54,19 +54,19 @@ export default function ActionMenu() {
           <ListItemText primary="Producten en Diensten" />
         </ListItem>
         <Divider />
-        <ListItem button onClick={() => router.push('/messages')}>
-          <ListItemIcon>
-            <MessageIcon />
-          </ListItemIcon>
-          <ListItemText primary="Berichtenbox" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/messages')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <MessageIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Berichtenbox" />*/}
+        {/*</ListItem>*/}
 
-        <ListItem button onClick={() => router.push('/tasks')}>
-          <ListItemIcon>
-            <PlaylistAddCheckIcon />
-          </ListItemIcon>
-          <ListItemText primary="Taken" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/tasks')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <PlaylistAddCheckIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Taken" />*/}
+        {/*</ListItem>*/}
 
         <ListItem button onClick={() => router.push('/cases')}>
           <ListItemIcon>
@@ -83,19 +83,19 @@ export default function ActionMenu() {
           <ListItemText primary="Identiteit" />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/workAndIncome')}>
-          <ListItemIcon>
-            <WorkIcon />
-          </ListItemIcon>
-          <ListItemText primary="Werk en Inkomen" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/workAndIncome')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <WorkIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Werk en Inkomen" />*/}
+        {/*</ListItem>*/}
 
-        <ListItem button onClick={() => router.push('/livingAndTax')}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Wonen en Belasting" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/livingAndTax')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <HomeIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Wonen en Belasting" />*/}
+        {/*</ListItem>*/}
 
         <ListItem button onClick={() => router.push('/vault')}>
           <ListItemIcon>
