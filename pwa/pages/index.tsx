@@ -11,6 +11,7 @@ import PaperCard from "../components/common/paperCard";
 import {useUserContext} from "../components/context/userContext";
 import {useAppContext} from "../components/context/state";
 import { Typography } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
 
 const Welcome = () => (
   <>
@@ -19,6 +20,9 @@ const Welcome = () => (
         <Grid item xs={12}>
           <Typography variant="h3" component="h3">
             Welkom op Mijn Omgeving!
+            <Button>
+              Test
+              </Button>
           </Typography>
         </Grid>
       </Grid>
