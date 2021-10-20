@@ -9,7 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import {useGet} from "restful-react";
 import {Info} from "@mui/icons-material";
 import {Paper, Stack} from "@mui/material";
-import {Alert} from "@mui/lab";
+import {Alert} from "@mui/material";
 
 export default function DataPersonalList({data = null}) {
 
