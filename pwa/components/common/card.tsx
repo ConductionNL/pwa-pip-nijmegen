@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Link} from "@mui/material";
+import {red} from "@mui/material/colors";
 
 const useStyles = makeStyles({
   root: {
@@ -16,8 +17,11 @@ const useStyles = makeStyles({
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  title: {
+  smallUpperTitle: {
     fontSize: 14,
+  },
+  title: {
+    color: "#a80a2d",
   },
   pos: {
     marginBottom: 12,
@@ -33,13 +37,13 @@ export default function StandardCard({smallUpperTitle = null, title = null, seco
       <CardContent>
         {
           smallUpperTitle != null &&
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
+          <Typography className={classes.smallUpperTitle} color="textSecondary" gutterBottom>
             {smallUpperTitle}
           </Typography>
         }
         {
           title != null &&
-          <Typography variant="h5" component="h2">
+          <Typography className={classes.title} variant="h5" component="h2">
             {title}
           </Typography>
         }
@@ -57,7 +61,7 @@ export default function StandardCard({smallUpperTitle = null, title = null, seco
         }
       </CardContent>
       <CardActions style={{marginTop: "auto"}}>
-        <Button size="small" >
+        <Button size="small" style={{textAlign: "right"}}>
           <Link href={link}>
             Lees meer
           </Link>
