@@ -145,7 +145,7 @@ export default function Footer() {
 
 
       <div className={classes.footerImage} style={{ backgroundColor: "#212121", paddingTop: "20px", paddingBottom: "20px"}}>
-        <img height="32px" width="150px" src="https://www.nijmegen.nl/typo3conf/ext/nijmegen_sitepackage/Resources/Public/Images/svg/beeldmerklabelwit.svg" />
+        <img height="32px" width="150px" src="/logo_nijmegen_wit.svg" />
       </div>
     </footer>
   );
