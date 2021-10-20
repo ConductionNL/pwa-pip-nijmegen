@@ -39,11 +39,7 @@ function Index() {
           <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Card className={classes.root}>
-                  <CardContent>
-                    <ClaimsTable/>
-                  </CardContent>
-                </Card>
+                <ClaimsTable/>
               </Grid>
             </Grid>
           </Box>
