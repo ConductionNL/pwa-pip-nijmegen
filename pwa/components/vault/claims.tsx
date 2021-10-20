@@ -9,23 +9,23 @@ import {ClaimModal} from "./ClaimModal";
 export default function ClaimsTable() {
 
   const [claims, setClaims] = React.useState(null);
-  const residentContext = useResidentContext();
+  // const residentContext = useResidentContext();
   const context = useAppContext();
 
-  useEffect(() => {
-    fetch(context.apiUrl + "/gateways/register/certificates?person=" + residentContext.resident['@id'], {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-      },
-    })
-      .then(response => response.json())
-      .then((data) =>  {
-        setClaims(data['hydra:member']);
-
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(context.apiUrl + "/gateways/register/certificates?person=", {
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then((data) =>  {
+  //       setClaims(data['hydra:member']);
+  //
+  //     });
+  // }, []);
 
   const columns = [
     { field: 'id', headerName: 'ID', flex: 1, hide: true },
