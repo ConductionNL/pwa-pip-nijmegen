@@ -1,14 +1,15 @@
 import {useRouter} from 'next/router'
 import React from "react";
-import Typography from '@material-ui/core/Typography';
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
 import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";import {Tab, Tabs} from "@material-ui/core";
 import {makeStyles, Theme} from "@material-ui/core/styles";
 import PersonalInfo from "../../components/data/personal_info";
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import {Tab, Tabs} from "@mui/material";
+import Typography from '@material-ui/core/Typography';
 
 interface TabPanelProps {
   children?: React.ReactNode;

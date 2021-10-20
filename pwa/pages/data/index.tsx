@@ -1,12 +1,11 @@
 import React, {ReactNode} from "react";
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
 import ActionMenu from "../../components/common/actionmenu";
-import Hidden from "@material-ui/core/Hidden";
 import PageHeader from "../../components/common/pageheader";
-import {Tab, Tabs, Typography, Box} from "@material-ui/core";
 import PaperCard from "../../components/common/paperCard";
-
+import Hidden from "@mui/material/Hidden";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 function Index() {
 
@@ -21,9 +20,9 @@ function Index() {
             <ActionMenu/>
           </Grid>
         </Hidden>
-        <Grid item sm={12} md={9} style={{marginTop: 20}}>
+        <Grid item sm={12} md={9}>
           <PageHeader title={title}/>
-          <Box paddingTop={3} paddingBottom={2}>
+          <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={8} md={6}>
                 <PaperCard
@@ -32,23 +31,6 @@ function Index() {
                   description="In de Basisregistratie Personen (BRP) zijn persoonsgegevens geregistreerd, zoals gegevens over geboorte, verhuizing, huwelijk en vertrek naar het buitenland."
                   link="/data/999995935"
                   linkText="Bekijk persoonsgegevens"
-                />
-              </Grid>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Verwerkingen"
-                  secondaryTitle="Bron: Verwerkingen Register"
-                  description="De gemeente houdt nauwkeurig bij welke organisaties uw gegevens hebben gebruikt (verwerkt) en met wel doel dit was. Deze verwerkingen kunt u inzien via het verwerkingen register."
-                  link="/processes"
-                  linkText="Bekijk verwerkingen"
-                />
-              </Grid>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Waardepapieren"
-                  description="In sommige gevallen heeft u bewijspapieren nodig, bijvoorbeeld een uittreksel van uw woonhistorie of een inkomens verklaring. U kunt deze tegenwoordig ook digitaal aanvragen, inzien en delen met organisaties."
-                  link="/claims"
-                  linkText="Bekijk waardepapieren"
                 />
               </Grid>
             </Grid>
