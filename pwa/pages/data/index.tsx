@@ -2,10 +2,11 @@ import React, {ReactNode} from "react";
 import Layout from "../../components/common/layout";
 import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
-import PaperCard from "../../components/common/paperCard";
 import Hidden from "@mui/material/Hidden";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import DataPersonalList from "../../components/data/personalInfo";
+import DataAddressList from "../../components/data/addressInfo";
 
 function Index() {
 
@@ -24,14 +25,11 @@ function Index() {
           <PageHeader title={title}/>
           <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={8} md={6}>
-                <PaperCard
-                  title="Persoonsgegevens"
-                  secondaryTitle="Bron: Basisregistratie Personen"
-                  description="In de Basisregistratie Personen (BRP) zijn persoonsgegevens geregistreerd, zoals gegevens over geboorte, verhuizing, huwelijk en vertrek naar het buitenland."
-                  link="/data/999995935"
-                  linkText="Bekijk persoonsgegevens"
-                />
+              <Grid item xs={12} sm={12} md={12}>
+                <DataPersonalList/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={12}>
+                <DataAddressList/>
               </Grid>
             </Grid>
           </Box>
