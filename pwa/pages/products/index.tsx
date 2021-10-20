@@ -9,23 +9,22 @@ import Box from "@mui/material/Box";
 
 function Index() {
 
-  const title = 'Producten en diensten'
-  const description = 'Omschrijving over producten'
+  const title = 'Diensten'
   const categories = [
     {
       id: 1,
-      name: "Diensten",
-      description: "product omschrijving"
+      name: "Verhuizen",
+      description: "Verhuizen, emigreren, briefadres, geheimhouding persoonsgegevens"
     },
     {
       id: 2,
-      name: "Vergunningen",
-      description: "product omschrijving 2"
+      name: "Uittreksel en verklaringen",
+      description: "Uittreksel burgelijke stand, basisregistratie personen, VOG"
     },
     {
       id: 2,
-      name: "Regelingen",
-      description: "product omschrijving 2"
+      name: "Trouwen, partnerschap, scheiden",
+      description: "Trouwen, geregistreerd partnerschap, scheiden"
     }];
 
   return <>
@@ -40,7 +39,6 @@ function Index() {
         <Grid item sm={12} md={9} style={{marginTop: 20}}>
           <PageHeader title={title} />
           <Box paddingTop={2} paddingBottom={2}>
-            <p>{description}</p>
           </Box>
 
           <Grid container spacing={2}>
