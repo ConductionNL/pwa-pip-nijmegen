@@ -24,7 +24,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 275,
+    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -45,7 +45,7 @@ export default function ActionMenu() {
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
-          <ListItemText primary="Producten" />
+          <ListItemText primary="Diensten" />
         </ListItem>
         <Divider />
 
