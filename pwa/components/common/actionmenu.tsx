@@ -53,7 +53,7 @@ export default function ActionMenu() {
           <ListItemIcon>
             <SubscriptionsIcon />
           </ListItemIcon>
-          <ListItemText primary="Mijn Zaken" />
+          <ListItemText primary="Mijn aanvragen" />
         </ListItem>
 
         <Divider />
@@ -68,7 +68,7 @@ export default function ActionMenu() {
           <ListItemIcon>
             <LockIcon />
           </ListItemIcon>
-          <ListItemText primary="Mijn Kluis" />
+          <ListItemText primary="Mijn kluis" />
         </ListItem>
 
       </List>

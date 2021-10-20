@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Index() {
   const classes = useStyles();
-  const title = 'Mijn Zaken';
+  const title = 'Mijn aanvragen';
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
