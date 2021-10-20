@@ -1,71 +1,115 @@
-import React from 'react';
-import {Link} from "@mui/material";
-import {useGet} from "restful-react";
-import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
+import React, {useEffect} from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import Button from "@mui/material/Button";
+import {documentDownload} from "../utility/DocumentDownload";
+import {useResidentContext} from "../context/residentContext";
+import {useAppContext} from "../context/state";
+import {ClaimModal} from "./ClaimModal";
 
-export default function ClaimsTable({claims = null}) {
+export default function ClaimsTable() {
 
-  if (claims == null) {
-    var {data: claims} = useGet({
-      path: "/claims"
-    });
-  }
+  const [claims, setClaims] = React.useState(null);
+  const residentContext = useResidentContext();
+  const context = useAppContext();
 
-  console.log('claims:');
-  console.log(claims);
+  useEffect(() => {
+    fetch(context.apiUrl + "/gateways/register/certificates?person=" + residentContext.resident['@id'], {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      },
+    })
+      .then(response => response.json())
+      .then((data) =>  {
+        setClaims(data['hydra:member']);
 
-  /* lets catch hydra */
-  if (claims != null && claims["results"] !== undefined) {
-    claims = claims["results"];
-
-    for (let i = 0; i < claims.length; i++) {
-      claims[i].id = claims[i].identificatie;
-    }
-  }
+      });
+  }, []);
 
   const columns = [
-    {field: 'name', headerName: 'Name', flex: 1},
-    {field: 'endpoint', headerName: 'Endpoint', flex: 1},
-    {field: 'route', headerName: 'Route', flex: 1},
+    { field: 'id', headerName: 'ID', flex: 1, hide: true },
     {
-      field: 'id',
-      headerName: 'View', renderCell: (params: GridRenderCellParams) => (
-        <strong>
-          <Link
-            href={"/claims/" + params.value}
+      field: 'type',
+      headerName: 'Type',
+      flex: 1,
+    },
+    {
+      field: 'organization',
+      headerName: 'Organisatie',
+      flex: 1,
+    },
+    {
+      field: "Pdf",
+      headerName: " ",
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              documentDownload(cellValues.row.document, cellValues.row.type, '.pdf')
+            }}
           >
-            View
-          </Link>
-        </strong>
-      ), flex: 1
-    }
+            Pdf
+          </Button>
+        );
+      }
+    },
+    {
+      field: "QR",
+      headerName: " ",
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              documentDownload(cellValues.row.image, cellValues.row.type, '.png')
+            }}
+          >
+            QR
+          </Button>
+        );
+      }
+    },
   ];
 
-
   return (
-    <div style={{height: 400, width: '100%'}}>
-      {claims ? (
-          <DataGrid
-            rows={claims}
-            columns={columns}
-            pageSize={20}
-            rowsPerPageOptions={[100]}
-            disableSelectionOnClick
-          />
-        )
-        :
-        (
-          <DataGrid
-            rows={[]}
-            loading={true}
-            columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
-            checkboxSelection
-            disableSelectionOnClick
-          />
-        )
-      }
-    </div>
+    <>
+      <ClaimModal />
+      <br/>
+
+      <div style={{ height: 400, width: '100%' }}>
+        { claims !== null ? (
+            <DataGrid
+              rows={claims}
+              columns={columns}
+              pageSize={100}
+              rowsPerPageOptions={[100]}
+              checkboxSelection
+              disableSelectionOnClick
+            />
+          )
+          :
+          (
+            <DataGrid
+              rows={[]}
+              loading={true}
+              columns={columns}
+              pageSize={100}
+              rowsPerPageOptions={[100]}
+              checkboxSelection
+              disableSelectionOnClick
+            />
+          )
+        }
+
+      </div>
+    </>
   );
 }
