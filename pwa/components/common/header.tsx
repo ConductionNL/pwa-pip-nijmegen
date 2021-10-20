@@ -32,7 +32,7 @@ export default function Header() {
     <header>
 
       <div className={classes.sectionDesktop}>
-        <img style={{ maxHeight: '100px', paddingTop: '20px' }} src="https://www.nijmegen.nl/typo3conf/ext/nijmegen_sitepackage/Resources/Public/Images/svg/beeldmerklabelrood.svg"/>
+        <img style={{ paddingTop: '20px', paddingBottom: '20px', maxHeight: '100px'}} src="/logo_nijmegen.svg"/>
       </div>
 
       <MainMenu />
