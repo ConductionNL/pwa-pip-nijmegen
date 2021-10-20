@@ -7,6 +7,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import DataPersonalList from "../../components/data/personalInfo";
 import DataAddressList from "../../components/data/addressInfo";
+import PaperCard from "../../components/common/paperCard";
+import ProductCard from "../../components/products/card";
+import Paper from "@material-ui/core/Paper";
+import StandardCard from "../../components/common/card";
 
 function Index() {
 
@@ -30,6 +34,17 @@ function Index() {
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <DataAddressList/>
+              </Grid>
+              <Grid item xs={12} sm={8} md={6}>
+                <Grid item xs={4}>
+                  <Paper>
+                    <StandardCard
+                      title="Uittreksels en verklaringen"
+                      description="Uittreksel burgelijke stand, basisregistratie personen, VOG"
+                      link="/products"
+                    />
+                  </Paper>
+                </Grid>
               </Grid>
             </Grid>
           </Box>
