@@ -14,7 +14,7 @@ import Hidden from '@material-ui/core/Hidden';
 import ActionMenu from "../../components/common/actionmenu";
 // import ArrangementsCards from "../../components/arrangements/cards";
 import {makeStyles} from "@material-ui/core/styles";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import { Alert, AlertTitle } from '@mui/material'
 import {Link} from "@material-ui/core";
 
 const useStyles = makeStyles({
