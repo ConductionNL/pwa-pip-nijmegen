@@ -9,7 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import {useGet} from "restful-react";
 import {Info} from "@mui/icons-material";
 import {Paper, Stack} from "@mui/material";
-import {Alert} from "@mui/lab";
+import { Alert } from '@mui/material'
 
 export default function DataPersonalList({data = null}) {
 
@@ -81,7 +81,7 @@ export default function DataPersonalList({data = null}) {
               <Info color="primary"/>
             </ListItemIcon>
           </ListItemButton>
-          <Collapse in={openAlert} timeout="auto" unmountOnExit>
+          <Collapse timeout="auto" unmountOnExit>
             <Stack>
               <Alert severity="info">De geslachtsnaam is hetzelfde als de achternaam. Heeft de geslachtsnaam een voorvoegsel, zoals “de” of “van”? Dan is het voorvoegsel vermeld bij Voorvoegsels geslachtsnaam.</Alert>
             </Stack>
