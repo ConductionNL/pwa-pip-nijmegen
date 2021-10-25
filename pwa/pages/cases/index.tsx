@@ -22,7 +22,7 @@ function Index() {
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
-      <Grid container >
+      <Grid container spacing={2} >
         <Hidden smDown>
           <Grid item md={3}>
             <ActionMenu />
@@ -32,11 +32,7 @@ function Index() {
           <PageHeader title={title} />
           <Grid container spacing={2} style={{marginTop: 20}}>
             <Grid item xs={12}>
-              <Card className={classes.root}>
-                <CardContent>
                   <CasesTable/>
-                </CardContent>
-              </Card>
             </Grid>
           </Grid>
         </Grid>
