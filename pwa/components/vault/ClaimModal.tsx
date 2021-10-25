@@ -104,9 +104,8 @@ export function ClaimModal() {
                   label="Type"
                   onChange={handleChange}
                 >
-                  <MenuItem value="akte_van_geboorte">Akte van geboorte &euro; </MenuItem><br/>
-                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn &euro;14,30</MenuItem><br/>
-                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen &euro;14,30 - &euro;28,60</MenuItem><br/>
+                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn &euro;14,30</MenuItem>
+                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen &euro;14,30 - &euro;28,60</MenuItem>
                 </Select>
               </FormControl>
               <br/>
