@@ -170,7 +170,7 @@ export default function MainMenu() {
                   //   <span style={{color: 'red'}}>Inloggen</span>
                   // </Link>
                   <Link
-                    href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/moving?state=8412312632"}>
+                    href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/data?state=8412312632"}>
                     <span style={{ color: 'white'}}>Inloggen</span>
                   </Link>
               }

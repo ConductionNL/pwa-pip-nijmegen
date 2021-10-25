@@ -34,7 +34,6 @@ export default function UserManagement() {
 
         userContext.setUser(null);
         sessionStorage.setItem('user', JSON.stringify(data));
-        router.push('/moving/moving');
         return null;
       }
     }
