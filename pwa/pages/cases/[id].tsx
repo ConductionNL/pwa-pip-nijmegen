@@ -9,13 +9,14 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
 const Product = () => {
-  const title = "Trouwen | 95128942"
+
   const router = useRouter()
   const {id} = router.query
-
   const { data: zaak } = useGet({
     path: "gateways/zaken/zaken/" + id,
   });
+
+  const title = zaak + " | " + id
 
   console.log(zaak);
 
