@@ -28,26 +28,8 @@ const useStyles = makeStyles({
   }
 });
 
-export default function PersonalList({data = null}) {
+export default function PersonalList({ user = { naam: { voornamen: 'Sarai', geslachtsnaam: 'Misidjan' }, geslachtsaanduiding: 'vrouw'}}) {
   const classes = useStyles();
-
-  if (data == null) {
-    var {data: data} = useGet({
-      path: "/data"
-    });
-  }
-
-  console.log('data:');
-  console.log(data);
-
-  /* lets catch hydra */
-  if (data != null && data["results"] !== undefined) {
-    data = data["results"];
-
-    for (let i = 0; i < data.length; i++) {
-      data[i].id = data[i].identificatie;
-    }
-  }
 
   const [open, setOpen] = React.useState(true);
   const [openAlert, setOpenAlert] = React.useState(true);
@@ -73,27 +55,36 @@ export default function PersonalList({data = null}) {
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon className={classes.label}>
               Voornamen
-            </ListItemIcon>
-            <ListItemText primary="Sarai" className={classes.dataWithAction}/>
-            <ListItemIcon>
-              <Link href="/moving/address">
-                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
-              </Link>
-            </ListItemIcon>
+          </ListItemIcon>
+          {
+            user.naam !== undefined && user.naam.voornamen &&
+            <ListItemText primary={user.naam.voornamen} className={classes.dataWithAction} />
+          }
+          <ListItemIcon>
+            <Link href="/moving/address">
+              <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
+            </Link>
+          </ListItemIcon>
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
               Achternaam
-            </ListItemIcon>
-            <ListItemText primary="Misidjan" className={classes.dataWithAction}/>
+          </ListItemIcon>
+          {
+            user.naam !== undefined && user.naam.geslachtsnaam &&
+            <ListItemText primary={user.naam.geslachtsnaam} className={classes.dataWithAction} />
+          }
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
               Geslacht
-            </ListItemIcon>
-            <ListItemText primary="Vrouw" className={classes.dataWithAction}/>
+          </ListItemIcon>
+          {
+            user !== undefined && user.geslachtsaanduiding !== undefined &&
+            <ListItemText primary={user.geslachtsaanduiding} className={classes.dataWithAction} />
+          }
           </ListItem>
     </List>
     </List>
