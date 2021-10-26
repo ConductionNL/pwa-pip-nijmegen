@@ -12,6 +12,7 @@ import ParentsList from "../../components/data/parents_info";
 import AddressesList from "../../components/data/addresses_info";
 import {useUserContext} from "../../components/context/userContext";
 import {useAppContext} from "../../components/context/state";
+import TravelDocuments from "../../components/data/travelDocuments";
 
 function Index() {
   const title = 'Mijn gegevens';
@@ -59,7 +60,8 @@ function Index() {
           <ParentsList/>
           <Divider/>
           <AddressesList/>
-
+          <Divider/>
+          <TravelDocuments/>
         </Grid>
       </Grid>
 
