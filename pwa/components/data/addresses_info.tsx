@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ChildrensList({data = null}) {
+export default function AddressesList({data = null}) {
   const classes = useStyles();
 
   if (data == null) {
@@ -71,35 +71,47 @@ export default function ChildrensList({data = null}) {
           {open ? <ExpandLess /> : <ChevronRight />}
         </ListItemIcon>
         <ListItemText style={{marginLeft: "-3%"}}>
-          <Typography variant="h5" style={{fontWeight: 'bold'}}>Kinderen</Typography>
+          <Typography variant="h5" style={{fontWeight: 'bold'}}>Vorige woonadressen</Typography>
         </ListItemText>
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon className={classes.label}>
-              Voornamen
+              Straat
             </ListItemIcon>
-            <ListItemText primary="Sarai" className={classes.dataWithAction}/>
+            <ListItemText primary="Vuntuslaan" className={classes.dataWithAction}/>
             <ListItemIcon>
               <Link href="/moving/address">
-                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
+                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Verhuizing doorgeven</Button>
               </Link>
             </ListItemIcon>
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
-              Achternaam
+              Plaats
             </ListItemIcon>
-            <ListItemText primary="Misidjan" className={classes.dataWithAction} />
+            <ListItemText primary="1231NR Loosdrecht" className={classes.dataWithAction}/>
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
-              Geslacht
+              Vanaf
             </ListItemIcon>
-            <ListItemText primary="Vrouw" className={classes.dataWithAction}/>
+            <ListItemText primary="01 januari 2002" className={classes.dataWithAction}/>
+          </ListItem>
+
+          <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
+            <ListItemIcon className={classes.label}>
+              Aantal bewoners
+            </ListItemIcon>
+            <ListItemText primary="3" className={classes.dataWithAction}/>
+            <ListItemIcon>
+              <Link href="/moving/address">
+                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Onjuiste inschrijving melden</Button>
+              </Link>
+            </ListItemIcon>
           </ListItem>
         </List>
       </Collapse>

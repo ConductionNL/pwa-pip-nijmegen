@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 import { useRouter } from 'next/router';
 import MessageIcon from '@mui/icons-material/Message';
@@ -27,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  paddingMobile: {
+    [theme.breakpoints.down('md')]: {
+      padding: '15px',
+    },
+  },
+  paddingListItemMobile: {
+      paddingBottom: '10px !important',
+      paddingTop: '10px !important',
+  },
 }));
 
 function ListItemLink(props) {
@@ -39,36 +49,52 @@ export default function ActionMenu() {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" aria-label="main mailbox folders" className={classes.paddingMobile}>
 
-        <ListItem button onClick={() => router.push('/products')}>
+        <ListItem button onClick={() => router.push('/products')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <ShoppingCartIcon />
+            <ShoppingCartIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary="Diensten" />
-        </ListItem>
-        <Divider />
-
-        <ListItem button onClick={() => router.push('/cases')}>
-          <ListItemIcon>
-            <SubscriptionsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Mijn aanvragen" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Diensten</Typography>}
+          />
         </ListItem>
 
         <Divider />
-        <ListItem button onClick={() => router.push('/data')}>
+
+        <ListItem button onClick={() => router.push('/cases')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <AssignmentIndIcon />
+            <SubscriptionsIcon fontSize="large"/>
           </ListItemIcon>
-          <ListItemText primary="Mijn gegevens" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn aanvragen</Typography>}
+          />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/vault')}>
+        <Divider />
+
+        <ListItem button onClick={() => router.push('/data')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <LockIcon />
+            <AssignmentIndIcon fontSize="large"/>
           </ListItemIcon>
-          <ListItemText primary="Mijn kluis" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn gegevens</Typography>}
+          />
+        </ListItem>
+
+        <Divider />
+
+        <ListItem button onClick={() => router.push('/vault')} className={classes.paddingListItemMobile}>
+          <ListItemIcon>
+            <LockIcon fontSize="large" />
+          </ListItemIcon>
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn kluis</Typography>}
+          />
         </ListItem>
 
       </List>
