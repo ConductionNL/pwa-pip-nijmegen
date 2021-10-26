@@ -9,6 +9,7 @@ import {Alert, FormControl, InputLabel, MenuItem, Select, Snackbar, TextField} f
 import {useAppContext} from "../context/state";
 import {useUserContext} from "../context/userContext";
 import {useResidentContext} from "../context/residentContext";
+import CloseIcon from '@mui/icons-material/Close';
 
 export function ClaimModal() {
   const [open, setOpen] = React.useState(false);
@@ -87,24 +88,24 @@ export function ClaimModal() {
             p: 4,
 
           }}>
-            <Typography id="transition-modal-title" variant="h5" mb={2} component="h2">
-              Claim aanmaken
+            <div style={{float: 'right'}} onClick={handleClose}><CloseIcon/></div>
+            <Typography style={{marginTop: 30}} id="transition-modal-title" variant="h5" mb={2} component="h2">
+              Nieuw uittreksel
             </Typography>
             <br/>
             <br/>
             <form onSubmit={handleClaim}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                <InputLabel id="type">Type</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
+                  labelId="type"
                   id="demo-simple-select"
                   value={type}
                   label="Type"
                   onChange={handleChange}
                 >
-                  <MenuItem value="akte_van_geboorte">Akte van geboorte</MenuItem>
-                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn</MenuItem>
-                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen</MenuItem>
+                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn &euro;14,30</MenuItem>
+                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen &euro;14,30 - &euro;28,60</MenuItem>
                 </Select>
               </FormControl>
               <br/>
