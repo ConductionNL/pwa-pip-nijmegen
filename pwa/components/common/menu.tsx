@@ -12,7 +12,11 @@ import {useAppContext} from "../context/state";
 import {useUserContext} from "../context/userContext";
 import Button from "@mui/material/Button";
 import {ChevronRight} from "@mui/icons-material";
-import {Stack} from "@mui/material";
+import { Stack } from "@mui/material";
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import IconButton from '@material-ui/core/IconButton';
+import ActionMenu from "../../components/common/actionmenu";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -144,12 +148,34 @@ export default function MainMenu() {
       <AppBar position="static" className={classes.appbar}>
         <Container>
           <Stack
-            sx={{minHeight: '64px'}}
+            sx={{ minHeight: '64px' }}
             direction="row"
             justifyContent="space-between"
             alignItems="center"
             spacing={2}
           >
+
+          {
+            <div className={classes.sectionMobile}>
+              <IconButton aria-label="show 17 new notifications" color="inherit"
+                onClick={toggleDrawer('displayUserDrawer', true)}>
+                <MenuIcon />
+              </IconButton>
+              <Drawer anchor={'left'} open={state['displayUserDrawer']}
+                onClose={toggleDrawer('displayUserDrawer', false)}>
+                <div
+                  className={classes.list}
+                  role="presentation"
+                  onClick={toggleDrawer('displayUserDrawer', false)}
+                  onKeyDown={toggleDrawer('displayUserDrawer', false)}
+                >
+                  <ActionMenu />
+                </div>
+              </Drawer>
+            </div>
+          }
+
+          <div className={classes.grow} />
             <Typography variant="h6" color="inherit">
               {
                 userContext.user !== null &&
