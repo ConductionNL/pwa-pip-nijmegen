@@ -13,14 +13,17 @@ const useStyles = makeStyles({
     color: "gray",
   },
   dataWithAction: {
-    marginLeft: "-31%"
+    marginLeft: "-26%"
   },
   action: {
-    marginLeft: "-20%"
+    marginLeft: "-15%"
   },
   data: {
-    marginLeft: "-60%"
+    marginLeft: "-55%"
   },
+  marginTop: {
+    marginTop: "-1%"
+  }
 });
 
 export default function AddressList({data = null}) {
@@ -86,7 +89,7 @@ export default function AddressList({data = null}) {
         </StyledGrid>
       </Grid>
 
-      <Grid container>
+      <Grid container className={classes.marginTop}>
         <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Plaats</p>
         </StyledGrid>
@@ -95,7 +98,7 @@ export default function AddressList({data = null}) {
         </StyledGrid>
       </Grid>
 
-      <Grid container>
+      <Grid container className={classes.marginTop}>
         <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Vanaf</p>
         </StyledGrid>
@@ -104,7 +107,7 @@ export default function AddressList({data = null}) {
         </StyledGrid>
       </Grid>
 
-      <Grid container>
+      <Grid container className={classes.marginTop}>
         <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Aantal bewoners</p>
         </StyledGrid>
