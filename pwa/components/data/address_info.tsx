@@ -1,15 +1,22 @@
 import React, {ReactNode} from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Divider, Typography} from "@mui/material";
+import {Button, Divider, Link, Typography} from "@mui/material";
 import {styled} from '@mui/material/styles';
 import MuiGrid from '@mui/material/Grid';
 import {makeStyles} from "@material-ui/core/styles";
 import {useGet} from "restful-react";
+import {ChevronRight} from "@mui/icons-material";
 
 const useStyles = makeStyles({
   labelData: {
     color: "gray",
+  },
+  dataWithAction: {
+    marginLeft: "-31%"
+  },
+  action: {
+    marginLeft: "-20%"
   },
   data: {
     marginLeft: "-60%"
@@ -69,8 +76,13 @@ export default function AddressList({data = null}) {
         <StyledGrid paddingLeft={6} item xs>
           <p className={classes.labelData}>Straat</p>
         </StyledGrid>
-        <StyledGrid item xs className={classes.data}>
-          <p>Vuntuslaan 75</p>
+        <StyledGrid item xs className={classes.dataWithAction}>
+          <p>Vunstuslaan</p>
+        </StyledGrid>
+        <StyledGrid item xs className={classes.action}>
+          <Link href="/moving/address">
+            <Button size="small" variant="text" startIcon={<ChevronRight/>}>Verhuizing doorgeven</Button>
+          </Link>
         </StyledGrid>
       </Grid>
 
@@ -89,6 +101,20 @@ export default function AddressList({data = null}) {
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
           <p>01 januari 2002</p>
+        </StyledGrid>
+      </Grid>
+
+      <Grid container paddingTop={3}>
+        <StyledGrid paddingLeft={6} item xs>
+          <p className={classes.labelData}>Aantal bewoners</p>
+        </StyledGrid>
+        <StyledGrid item xs className={classes.dataWithAction}>
+          <p>3</p>
+        </StyledGrid>
+        <StyledGrid item xs className={classes.action}>
+          <Link href="/moving/address">
+            <Button size="small" variant="text" startIcon={<ChevronRight/>}>Onjuiste inschrijving melden</Button>
+          </Link>
         </StyledGrid>
       </Grid>
     </Box>
