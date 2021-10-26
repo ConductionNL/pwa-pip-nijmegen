@@ -28,26 +28,8 @@ const useStyles = makeStyles({
   }
 });
 
-export default function AddressList({data = null}) {
+export default function AddressList({user = null}) {
   const classes = useStyles();
-
-  if (data == null) {
-    var {data: data} = useGet({
-      path: "/data"
-    });
-  }
-
-  console.log('data:');
-  console.log(data);
-
-  /* lets catch hydra */
-  if (data != null && data["results"] !== undefined) {
-    data = data["results"];
-
-    for (let i = 0; i < data.length; i++) {
-      data[i].id = data[i].identificatie;
-    }
-  }
 
   const [open, setOpen] = React.useState(true);
   const [openAlert, setOpenAlert] = React.useState(true);
@@ -59,6 +41,7 @@ export default function AddressList({data = null}) {
   const handleAlertClick = () => {
     setOpenAlert(!openAlert);
   };
+
 
   return (
     <List style={{width: '100%'}}
@@ -73,8 +56,11 @@ export default function AddressList({data = null}) {
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon className={classes.label}>
               Straat
-            </ListItemIcon>
-            <ListItemText primary="Vuntuslaan" className={classes.dataWithAction}/>
+          </ListItemIcon>
+          {
+            user !== null && user.verblijfplaats !== null && user.verblijfplaats.adresregel1 !== null &&
+            <ListItemText primary={user.verblijfplaats.adresregel1} className={classes.dataWithAction} />
+          }
             <ListItemIcon>
               <Link href="/moving/address">
                 <Button size="small" variant="text" startIcon={<ChevronRight/>}> Verhuizing doorgeven</Button>
@@ -85,15 +71,21 @@ export default function AddressList({data = null}) {
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
               Plaats
-            </ListItemIcon>
-            <ListItemText primary="1231NR Loosdrecht" className={classes.dataWithAction}/>
+          </ListItemIcon>
+          {
+            user !== null && user.verblijfplaats !== null && user.verblijfplaats.woonplaats !== null &&
+            <ListItemText primary={user.verblijfplaats.woonplaats} className={classes.dataWithAction} />
+          }
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
               Vanaf
-            </ListItemIcon>
-            <ListItemText primary="01 januari 2002" className={classes.dataWithAction}/>
+          </ListItemIcon>
+          {
+            user !== null && user.verblijfplaats !== null && user.verblijfplaats.datumAanvangAdreshouding !== null &&
+            <ListItemText primary={user.verblijfplaats.datumAanvangAdreshouding.datum} className={classes.dataWithAction} />
+          }
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>

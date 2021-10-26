@@ -32,7 +32,7 @@ function Index() {
         .then(response => response.json())
         .then((data) => {
           setUser(data);
-          console.log(user);
+          console.log(data);
         });
     }
   }, []);
@@ -52,9 +52,18 @@ function Index() {
 
           <Divider style={{marginTop: 20}}/>
 
-         <PersonalList/>
-          <Divider/>
-          <AddressList/>
+          {
+            user !== null &&
+              <PersonalList user={user} />
+          }
+          {
+            user !== null &&
+            <AddressList user={user} />
+          }
+
+          <Divider />
+
+
           <ChildrensList/>
           <Divider/>
           <ParentsList/>
