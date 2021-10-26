@@ -7,20 +7,21 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {useGet} from "restful-react";
-import {ChevronRight, Info} from "@mui/icons-material";
+import {ChevronRight, Expand, Info} from "@mui/icons-material";
 import {Button, Link, ListItem, Paper, Stack, Typography} from "@mui/material";
 import {Alert} from "@mui/material";
 import {makeStyles} from "@material-ui/core/styles";
+import {useState} from "react";
 
 const useStyles = makeStyles({
   label: {
     color: "gray",
   },
   dataWithAction: {
-    marginLeft: 30
+    marginLeft: 20
   },
   data: {
-    marginLeft: "20%"
+    marginLeft: "15%"
   },
   marginTop: {
     marginTop: "-2%",
@@ -28,7 +29,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function PersonalList({data = null}) {
+export default function ParentsList({data = null}) {
   const classes = useStyles();
 
   if (data == null) {
@@ -49,7 +50,7 @@ export default function PersonalList({data = null}) {
     }
   }
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(true);
 
   const handleClick = () => {
@@ -62,31 +63,32 @@ export default function PersonalList({data = null}) {
 
   return (
     <List style={{width: '100%'}}
-          sx={{ width: '100%'}}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
+      sx={{ width: '100%'}}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
     >
-      <ListItemText>
-        <Typography variant="h5" style={{fontWeight: 'bold'}} className={classes.data}>Persoonlijke gegevens</Typography>
-      </ListItemText>
+      <ListItem onClick={handleClick} className={classes.data}>
+        <ListItemIcon>
+          {open ? <ExpandLess /> : <ChevronRight />}
+        </ListItemIcon>
+        <ListItemText style={{marginLeft: "-3%"}}>
+          <Typography variant="h5" style={{fontWeight: 'bold'}}>Ouders</Typography>
+        </ListItemText>
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon className={classes.label}>
               Voornamen
             </ListItemIcon>
             <ListItemText primary="Sarai" className={classes.dataWithAction}/>
-            <ListItemIcon>
-              <Link href="/moving/address">
-                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
-              </Link>
-            </ListItemIcon>
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
             <ListItemIcon className={classes.label}>
               Achternaam
             </ListItemIcon>
-            <ListItemText primary="Misidjan" className={classes.dataWithAction}/>
+            <ListItemText primary="Misidjan" className={classes.dataWithAction} />
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
@@ -95,7 +97,8 @@ export default function PersonalList({data = null}) {
             </ListItemIcon>
             <ListItemText primary="Vrouw" className={classes.dataWithAction}/>
           </ListItem>
-    </List>
+        </List>
+      </Collapse>
     </List>
   );
 }
