@@ -28,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
+  paddingMobile: {
+    [theme.breakpoints.down('md')]: {
+      padding: '15px',
+    },
+  },
+  paddingListItemMobile: {
+      paddingBottom: '10px !important',
+      paddingTop: '10px !important',
+  },
 }));
 
 function ListItemLink(props) {
@@ -40,9 +49,9 @@ export default function ActionMenu() {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" aria-label="main mailbox folders" className={classes.paddingMobile}>
 
-        <ListItem button onClick={() => router.push('/products')}>
+        <ListItem button onClick={() => router.push('/products')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <ShoppingCartIcon fontSize="large" />
           </ListItemIcon>
@@ -54,7 +63,7 @@ export default function ActionMenu() {
 
         <Divider />
 
-        <ListItem button onClick={() => router.push('/cases')}>
+        <ListItem button onClick={() => router.push('/cases')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <SubscriptionsIcon fontSize="large"/>
           </ListItemIcon>
@@ -66,7 +75,7 @@ export default function ActionMenu() {
 
         <Divider />
 
-        <ListItem button onClick={() => router.push('/data')}>
+        <ListItem button onClick={() => router.push('/data')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <AssignmentIndIcon fontSize="large"/>
           </ListItemIcon>
@@ -78,7 +87,7 @@ export default function ActionMenu() {
 
         <Divider />
 
-        <ListItem button onClick={() => router.push('/vault')}>
+        <ListItem button onClick={() => router.push('/vault')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <LockIcon fontSize="large" />
           </ListItemIcon>

@@ -23,7 +23,7 @@ function Index() {
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
       <Grid container spacing={2} >
-        <Hidden smDown>
+        <Hidden mdDown>
           <Grid item md={3}>
             <ActionMenu />
           </Grid>

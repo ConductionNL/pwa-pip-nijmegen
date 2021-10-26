@@ -175,8 +175,10 @@ export default function MainMenu() {
             </div>
           }
 
-          <div className={classes.grow} />
-            <Typography variant="h6" color="inherit">
+            <div className={classes.grow} />
+
+            <div style={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+            <Typography sx={{ float: 'left' }} variant="h6" color="inherit">
               {
                 userContext.user !== null &&
                 <span style={{ color: 'white'}}>
@@ -200,7 +202,8 @@ export default function MainMenu() {
                     <span style={{ color: 'white'}}>Inloggen</span>
                   </Link>
               }
-            </Typography>
+              </Typography>
+              </div>
           </Stack>
         </Container>
       </AppBar>
