@@ -1,19 +1,30 @@
 import React, {ReactNode} from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Divider, Typography} from "@mui/material";
+import {Button, Divider, Link, Typography} from "@mui/material";
 import {styled} from '@mui/material/styles';
 import MuiGrid from '@mui/material/Grid';
 import {makeStyles} from "@material-ui/core/styles";
 import {useGet} from "restful-react";
+import {ChevronLeft, ChevronRight} from "@mui/icons-material";
+import {textAlign} from "@mui/system";
 
 const useStyles = makeStyles({
   labelData: {
     color: "gray",
   },
-  data: {
-    marginLeft: "-60%"
+  dataWithAction: {
+    marginLeft: "-26%"
   },
+  action: {
+    marginLeft: "-15%"
+  },
+  data: {
+    marginLeft: "-55%"
+  },
+  marginTop: {
+    marginTop: "-1%"
+  }
 });
 
 export default function PersonalList({data = null}) {
@@ -66,16 +77,21 @@ export default function PersonalList({data = null}) {
       </Grid>
 
       <Grid container paddingTop={3}>
-        <StyledGrid paddingLeft={6} item xs>
-          <p className={classes.labelData}>Voornamen</p>
+        <StyledGrid paddingLeft={7} item xs>
+            <p className={classes.labelData}>Voornamen</p>
         </StyledGrid>
-        <StyledGrid item xs className={classes.data}>
-          <p>Sarai Aliza</p>
+        <StyledGrid item xs className={classes.dataWithAction}>
+            <p>Sarai Aliza</p>
+        </StyledGrid>
+        <StyledGrid item xs className={classes.action}>
+          <Link href="/moving/address">
+            <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
+          </Link>
         </StyledGrid>
       </Grid>
 
-      <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+      <Grid container className={classes.marginTop}>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Achternaam</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
@@ -83,8 +99,8 @@ export default function PersonalList({data = null}) {
         </StyledGrid>
       </Grid>
 
-      <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+      <Grid container className={classes.marginTop}>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Geslacht</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>

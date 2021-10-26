@@ -48,12 +48,10 @@ function Index() {
 
           <Divider style={{marginTop: 20}}/>
 
-          <PersonalList />
-
-          <Divider />
-
-          <AddressList />
-
+         <PersonalList/>
+          <Divider/>
+          <AddressList/>
+          <Divider/>
           {/*<Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>*/}
           {/*  <Grid container spacing={2}>*/}
           {/*    <Grid item xs={12} sm={12} md={12}>*/}
