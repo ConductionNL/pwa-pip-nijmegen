@@ -15,12 +15,12 @@ const PageHeader = ({ title="Welcome to Demodam!", h1=false, description="defaul
         </Link>
         <Typography color="textPrimary">{title}</Typography>
       </Breadcrumbs>
-      {
-        h1 == true ?
-        <Typography variant="h1">
+        {
+          h1 == true ?
+            <Typography sx={{marginTop: "15px"}} variant="h1">
           {title}
-        </Typography> :
-          <Typography variant="h4">
+            </Typography> :
+            <Typography sx={{ marginTop: "15px" }} variant="h4">
             {title}
           </Typography>
       }

@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 import { useRouter } from 'next/router';
 import MessageIcon from '@mui/icons-material/Message';
@@ -43,32 +44,48 @@ export default function ActionMenu() {
 
         <ListItem button onClick={() => router.push('/products')}>
           <ListItemIcon>
-            <ShoppingCartIcon />
+            <ShoppingCartIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary="Diensten" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Diensten</Typography>}
+          />
         </ListItem>
+
         <Divider />
 
         <ListItem button onClick={() => router.push('/cases')}>
           <ListItemIcon>
-            <SubscriptionsIcon />
+            <SubscriptionsIcon fontSize="large"/>
           </ListItemIcon>
-          <ListItemText primary="Mijn aanvragen" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn aanvragen</Typography>}
+          />
         </ListItem>
 
         <Divider />
+
         <ListItem button onClick={() => router.push('/data')}>
           <ListItemIcon>
-            <AssignmentIndIcon />
+            <AssignmentIndIcon fontSize="large"/>
           </ListItemIcon>
-          <ListItemText primary="Mijn gegevens" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn gegevens</Typography>}
+          />
         </ListItem>
+
+        <Divider />
 
         <ListItem button onClick={() => router.push('/vault')}>
           <ListItemIcon>
-            <LockIcon />
+            <LockIcon fontSize="large" />
           </ListItemIcon>
-          <ListItemText primary="Mijn kluis" />
+          <ListItemText
+            disableTypography
+            primary={<Typography variant="h6">Mijn kluis</Typography>}
+          />
         </ListItem>
 
       </List>

@@ -121,9 +121,19 @@ export default function Footer() {
                   Diensten
                 </Typography>
               </Box>
-              <Box sx={{marginBottom: '15px', marginTop: '15px'}}>
-                <Link href="/" color="inherit" className={classes.footerItem}>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/moving" color="inherit" className={classes.footerItem}>
                   Verhuizen
+                </Link>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/marriage" color="inherit" className={classes.footerItem}>
+                  Huwelijk
+                </Link>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/certificates" color="inherit" className={classes.footerItem}>
+                  Uittreksels
                 </Link>
               </Box>
             </Grid>

@@ -24,16 +24,31 @@ export default function Index() {
     }
   }
 
+  let userContext = useUserContext();
+
 
   return (<>
 
     <Layout title="Welkom bij Mijn Omgeving Nijmegen" description="waar kan ik deze description zien">
       <Grid sx={{paddingTop: "20px"}} container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h3" component="h3">
-            Mijn Nijmegen
-          </Typography>
+
+          {
+            userContext.user == null ?
+            <Typography variant="h3" component="h3">
+              Mijn Nijmegen
+              </Typography>
+            :
+              <Typography variant="h3" component="h3">
+                {"Welkom " + userContext.user.name}
+            </Typography>
+
+          }
         </Grid>
+
+        {
+          userContext.user == null ?
+            <>
         <Grid item xs={12}>
           <Typography variant="h6" component="h6">
             Bekijk uw gegevens, meldingen, aanvragen of uitkeringsgegevens op uw persoonlijke gemeentepagina.
@@ -41,7 +56,10 @@ export default function Index() {
         </Grid>
         <Grid item xs={12}>
           <Box style={{ padding: '15px', background: '#157C68', width: '265px', marginTop: '20px' }}>
-            <Link href={context.baseUrl + " /digid/login?returnUrl=" + context.frontendUrl + "/moving?state=8412312632"} style={{ textDecoration: 'none !important' }}>
+
+            <Link
+              href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/data?state=8412312632"}
+              style={{ textDecoration: 'none !important' }}>
                <img src="/digid_button.svg" width='55px' height='55px'  />
                <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
                  INLOGGEN
@@ -62,7 +80,30 @@ export default function Index() {
             <li>Gegevens over uw zaken</li>
             <li>Uw informatie in uw kluis</li>
           </ul>
-        </Grid>
+              </Grid>
+              </>
+            :
+            <>
+            <Grid item xs={12}>
+              <Typography variant="h6" component="h6">
+                Bekijk uw gegevens, meldingen, aanvragen of uitkeringsgegevens op uw persoonlijke gemeentepagina.
+              </Typography>
+            </Grid>
+        <Grid item xs={12}>
+          <Box style={{ padding: '15px', background: '#157C68', width: '265px', marginTop: '20px' }}>
+
+            <Link
+              href="/data"
+              style={{ textDecoration: 'none !important' }}>
+               <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
+                 MIJN GEGEVENS
+              </b>
+            </Link>
+          </Box>
+              </Grid>
+              </>
+
+        }
       </Grid>
     </Layout>
   </>);
