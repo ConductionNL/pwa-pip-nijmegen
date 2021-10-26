@@ -73,7 +73,7 @@ export default function AddressList({data = null}) {
       </Grid>
 
       <Grid container paddingTop={3}>
-        <StyledGrid paddingLeft={6} item xs>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Straat</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.dataWithAction}>
@@ -87,7 +87,7 @@ export default function AddressList({data = null}) {
       </Grid>
 
       <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Plaats</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
@@ -96,7 +96,7 @@ export default function AddressList({data = null}) {
       </Grid>
 
       <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Vanaf</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
@@ -104,8 +104,8 @@ export default function AddressList({data = null}) {
         </StyledGrid>
       </Grid>
 
-      <Grid container paddingTop={3}>
-        <StyledGrid paddingLeft={6} item xs>
+      <Grid container>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Aantal bewoners</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.dataWithAction}>

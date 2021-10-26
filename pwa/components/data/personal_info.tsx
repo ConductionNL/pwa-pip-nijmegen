@@ -7,6 +7,7 @@ import MuiGrid from '@mui/material/Grid';
 import {makeStyles} from "@material-ui/core/styles";
 import {useGet} from "restful-react";
 import {ChevronLeft, ChevronRight} from "@mui/icons-material";
+import {textAlign} from "@mui/system";
 
 const useStyles = makeStyles({
   labelData: {
@@ -73,8 +74,8 @@ export default function PersonalList({data = null}) {
       </Grid>
 
       <Grid container paddingTop={3}>
-        <StyledGrid paddingLeft={6} item xs>
-          <p className={classes.labelData}>Voornamen</p>
+        <StyledGrid paddingLeft={7} item xs>
+            <p className={classes.labelData}>Voornamen</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.dataWithAction}>
             <p>Sarai Aliza</p>
@@ -87,7 +88,7 @@ export default function PersonalList({data = null}) {
       </Grid>
 
       <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Achternaam</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
@@ -96,7 +97,7 @@ export default function PersonalList({data = null}) {
       </Grid>
 
       <Grid container>
-        <StyledGrid paddingLeft={6} item xs>
+        <StyledGrid paddingLeft={7} item xs>
           <p className={classes.labelData}>Geslacht</p>
         </StyledGrid>
         <StyledGrid item xs className={classes.data}>
