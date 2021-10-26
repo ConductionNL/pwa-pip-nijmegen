@@ -4,13 +4,11 @@ import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
 import Hidden from "@mui/material/Hidden";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import DataPersonalList from "../../components/data/personalInfo";
-import DataAddressList from "../../components/data/addressInfo";
-import {ClaimModal} from "../../components/vault/ClaimModal";
+import {Divider, Typography} from "@mui/material";
+import PersonalList from "../../components/data/personal_info";
+import AddressList from "../../components/data/address_info";
 
 function Index() {
-
   const title = 'Mijn gegevens';
 
   return <>
@@ -24,20 +22,25 @@ function Index() {
         </Hidden>
         <Grid item sm={12} md={9}>
           <PageHeader title={title}/>
-          <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={12} md={12}>
-                <DataPersonalList/>
-              </Grid>
-              <Grid item xs={12} sm={12} md={12}>
-                <DataAddressList/>
-              </Grid>
-              <Grid item xs={12} sm={12} md={12}>
-              <ClaimModal />
-              </Grid>
-              <br/>
-            </Grid>
-          </Box>
+          <Divider style={{marginTop: 20}}/>
+
+         <PersonalList/>
+          <Divider/>
+          <AddressList/>
+          {/*<Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>*/}
+          {/*  <Grid container spacing={2}>*/}
+          {/*    <Grid item xs={12} sm={12} md={12}>*/}
+          {/*      <DataPersonalList/>*/}
+          {/*    </Grid>*/}
+          {/*    <Grid item xs={12} sm={12} md={12}>*/}
+          {/*      <DataAddressList/>*/}
+          {/*    </Grid>*/}
+          {/*    <Grid item xs={12} sm={12} md={12}>*/}
+          {/*    <ClaimModal />*/}
+          {/*    </Grid>*/}
+          {/*    <br/>*/}
+          {/*  </Grid>*/}
+          {/*</Box>*/}
         </Grid>
       </Grid>
 
