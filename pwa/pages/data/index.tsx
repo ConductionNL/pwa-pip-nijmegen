@@ -7,11 +7,11 @@ import Grid from "@mui/material/Grid";
 import {Divider, Typography} from "@mui/material";
 import PersonalList from "../../components/data/personal_info";
 import AddressList from "../../components/data/address_info";
-import {Box} from "@mui/system";
-import DataPersonalList from "../../components/data/children_info";
 import ChildrensList from "../../components/data/children_info";
 import ParentsList from "../../components/data/parents_info";
 import AddressesList from "../../components/data/addresses_info";
+import {useUserContext} from "../../components/context/userContext";
+import {useAppContext} from "../../components/context/state";
 
 function Index() {
   const title = 'Mijn gegevens';
