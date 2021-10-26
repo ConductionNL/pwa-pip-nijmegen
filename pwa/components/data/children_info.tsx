@@ -17,10 +17,10 @@ const useStyles = makeStyles({
     color: "gray",
   },
   dataWithAction: {
-    marginLeft: 30
+    marginLeft: 20
   },
   data: {
-    marginLeft: "20%"
+    marginLeft: "15%"
   },
   marginTop: {
     marginTop: "-2%",
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function PersonalList({data = null}) {
+export default function ChildrensList({data = null}) {
   const classes = useStyles();
 
   if (data == null) {
@@ -49,7 +49,7 @@ export default function PersonalList({data = null}) {
     }
   }
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(true);
 
   const handleClick = () => {
@@ -62,13 +62,19 @@ export default function PersonalList({data = null}) {
 
   return (
     <List style={{width: '100%'}}
-          sx={{ width: '100%'}}
-          component="nav"
-          aria-labelledby="nested-list-subheader"
+      sx={{ width: '100%'}}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
     >
-      <ListItemText>
-        <Typography variant="h5" style={{fontWeight: 'bold'}} className={classes.data}>Persoonlijke gegevens</Typography>
-      </ListItemText>
+      <ListItem onClick={handleClick} className={classes.data}>
+        <ListItemIcon>
+          {open ? <ExpandLess /> : <ChevronRight />}
+        </ListItemIcon>
+        <ListItemText style={{marginLeft: "-3%"}}>
+          <Typography variant="h5" style={{fontWeight: 'bold'}}>Kinderen</Typography>
+        </ListItemText>
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
             <ListItemIcon className={classes.label}>
@@ -86,7 +92,7 @@ export default function PersonalList({data = null}) {
             <ListItemIcon className={classes.label}>
               Achternaam
             </ListItemIcon>
-            <ListItemText primary="Misidjan" className={classes.dataWithAction}/>
+            <ListItemText primary="Misidjan" className={classes.dataWithAction} />
           </ListItem>
 
           <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
@@ -95,7 +101,8 @@ export default function PersonalList({data = null}) {
             </ListItemIcon>
             <ListItemText primary="Vrouw" className={classes.dataWithAction}/>
           </ListItem>
-    </List>
+        </List>
+      </Collapse>
     </List>
   );
 }

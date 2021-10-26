@@ -7,6 +7,11 @@ import Grid from "@mui/material/Grid";
 import {Divider, Typography} from "@mui/material";
 import PersonalList from "../../components/data/personal_info";
 import AddressList from "../../components/data/address_info";
+import {Box} from "@mui/system";
+import DataPersonalList from "../../components/data/children_info";
+import ChildrensList from "../../components/data/children_info";
+import ParentsList from "../../components/data/parents_info";
+import AddressesList from "../../components/data/addresses_info";
 
 function Index() {
   const title = 'Mijn gegevens';
@@ -27,21 +32,12 @@ function Index() {
          <PersonalList/>
           <Divider/>
           <AddressList/>
+          <ChildrensList/>
           <Divider/>
-          {/*<Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>*/}
-          {/*  <Grid container spacing={2}>*/}
-          {/*    <Grid item xs={12} sm={12} md={12}>*/}
-          {/*      <DataPersonalList/>*/}
-          {/*    </Grid>*/}
-          {/*    <Grid item xs={12} sm={12} md={12}>*/}
-          {/*      <DataAddressList/>*/}
-          {/*    </Grid>*/}
-          {/*    <Grid item xs={12} sm={12} md={12}>*/}
-          {/*    <ClaimModal />*/}
-          {/*    </Grid>*/}
-          {/*    <br/>*/}
-          {/*  </Grid>*/}
-          {/*</Box>*/}
+          <ParentsList/>
+          <Divider/>
+          <AddressesList/>
+
         </Grid>
       </Grid>
 
