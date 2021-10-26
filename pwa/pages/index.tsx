@@ -58,7 +58,7 @@ export default function Index() {
           <Box style={{ padding: '15px', background: '#157C68', width: '265px', marginTop: '20px' }}>
 
             <Link
-              href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "/data?state=8412312632"}
+              href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "?state=8412312632"}
               style={{ textDecoration: 'none !important' }}>
                <img src="/digid_button.svg" width='55px' height='55px'  />
                <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>

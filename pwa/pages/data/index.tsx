@@ -22,20 +22,38 @@ function Index() {
   console.log(userContext.user);
 
   const [user, setUser] = useState(null);
+  const [children, setChildren] = useState(null);
 
   useEffect(() => {
     if (userContext.user !== null) {
-      fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn, {
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then(response => response.json())
-        .then((data) => {
-          setUser(data);
-          console.log(user);
-        });
+      getPerson();
+      getPersonsChildren();
     }
   }, []);
+
+  const getPerson = () => {
+    fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn, {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setUser(data);
+        console.log(data);
+      });
+  }
+
+  const getPersonsChildren = () => {
+    fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn + "/kinderen", {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setChildren(data);
+        console.log(data);
+      });
+  }
 
 
   return <>
@@ -52,9 +70,18 @@ function Index() {
 
           <Divider style={{marginTop: 20}}/>
 
-         <PersonalList/>
-          <Divider/>
-          <AddressList/>
+          {
+            user !== null &&
+              <PersonalList user={user} />
+          }
+          {
+            user !== null &&
+            <AddressList user={user} />
+          }
+
+          <Divider />
+
+
           <ChildrensList/>
           <Divider/>
           <ParentsList/>

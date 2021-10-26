@@ -98,7 +98,7 @@ const Data = () => {
               </Grid>
               <Grid item xs={9}>
                 <TabPanel value={value} index={0}>
-                  <PersonalInfo id={id}/>
+                  <PersonalInfo/>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
                   <p>test2</p>
