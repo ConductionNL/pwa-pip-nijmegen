@@ -31,24 +31,6 @@ const useStyles = makeStyles({
 export default function TravelDocuments({data = null}) {
   const classes = useStyles();
 
-  if (data == null) {
-    var {data: data} = useGet({
-      path: "/data"
-    });
-  }
-
-  console.log('data:');
-  console.log(data);
-
-  /* lets catch hydra */
-  if (data != null && data["results"] !== undefined) {
-    data = data["results"];
-
-    for (let i = 0; i < data.length; i++) {
-      data[i].id = data[i].identificatie;
-    }
-  }
-
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(true);
 
