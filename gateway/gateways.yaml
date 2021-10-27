@@ -17,15 +17,14 @@ App\Entity\Gateway:
         apikey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
         location: https://conduction.demodam.nl/api/v1/vrc
         documentation: https://raw.githubusercontent.com/ConductionNL/productenendienstencatalogus/master/api/public/schema/openapi.yaml
-    gateway_2:
+    brp_api:
+        auth: username-password
         name: brp
-        auth: apikey
-        apikey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
+        location: https://vrij-brp.demodam.nl/haal-centraal-brp-bevragen/api/v1.3
+        documentation: https://raw.githubusercontent.com/ConductionNL/productenendienstencatalogus/master/api/public/schema/openapi.yaml
         username: begraven
         password: demodam
-        location: https://conduction.demodam.nl/api/v1/brp
-        documentation: https://raw.githubusercontent.com/ConductionNL/brpservice/master/api/public/schema/openapi.yaml
-        accept: application/hal+json
+        locale:
     gateway_3:
         name: catalogi
         auth: jwt
@@ -84,13 +83,13 @@ App\Entity\Gateway:
         apikey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
         location: https://waardepapieren.demodam.nl/api/v1/service
         documentation: https://github.com/ConductionNL/waardepapieren-register/raw/master/api/public/schema/openapi.yaml
-    gateway_13:
+    vrijbrp_dossiers:
         name: vrijbrp_dossiers
         auth: vrijbrp-jwt
         username: conduction
         password: 7cU2D!Pu
-        location: https://api.procura.nl/dossiers
-        #documentation: https://raw.githubusercontent.com/ConductionNL/productenendienstencatalogus/master/api/public/schema/openapi.yaml
+        location: https://api.procura.nl/dossiers/api/v1
+        documentation: https://redocly.github.io/redoc/?url=https://api.procura.nl/dossiers/public/v3/api-docs/public-API-v1.0
 App\Entity\Authentication:
     authentication_1:
         name: conduction
