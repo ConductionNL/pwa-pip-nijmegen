@@ -100,8 +100,3 @@ App\Entity\Authentication:
         scopes:
             - openid
             - profile
-
-
-
-
-
