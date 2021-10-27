@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 export default function AddressesList({addresses = null}) {
   const classes = useStyles();
 
-
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(true);
 

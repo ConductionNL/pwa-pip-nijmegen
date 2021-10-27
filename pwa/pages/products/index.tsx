@@ -22,7 +22,7 @@ function Index() {
       description: "Uittreksel burgelijke stand, basisregistratie personen, VOG"
     },
     {
-      id: 2,
+      id: 3,
       name: "Trouwen, partnerschap, scheiden",
       description: "Trouwen, geregistreerd partnerschap, scheiden"
     }];
@@ -45,7 +45,7 @@ function Index() {
           {
             categories !== null &&
             categories.map((product) => (
-            <ProductCard product={product}/>
+            <ProductCard key={product.id} product={product}/>
             ))}
           </Grid>
         </Grid>

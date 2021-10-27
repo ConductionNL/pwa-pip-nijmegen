@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function PersonalList({ user = { naam: { voornamen: 'Sarai', geslachtsnaam: 'Misidjan' }, geslachtsaanduiding: 'vrouw'}}) {
+export default function PersonalList({ user = null}) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(true);
@@ -57,7 +57,7 @@ export default function PersonalList({ user = { naam: { voornamen: 'Sarai', gesl
               Voornamen
           </ListItemIcon>
           {
-            user.naam !== undefined && user.naam.voornamen &&
+            user !== null && user.naam !== undefined && user.naam.voornamen &&
             <ListItemText primary={user.naam.voornamen} className={classes.dataWithAction} />
           }
           <ListItemIcon>
@@ -72,7 +72,7 @@ export default function PersonalList({ user = { naam: { voornamen: 'Sarai', gesl
               Achternaam
           </ListItemIcon>
           {
-            user.naam !== undefined && user.naam.geslachtsnaam &&
+            user !== null && user.naam !== undefined && user.naam.geslachtsnaam &&
             <ListItemText primary={user.naam.geslachtsnaam} className={classes.dataWithAction} />
           }
           </ListItem>
@@ -82,7 +82,7 @@ export default function PersonalList({ user = { naam: { voornamen: 'Sarai', gesl
               Geslacht
           </ListItemIcon>
           {
-            user !== undefined && user.geslachtsaanduiding !== undefined &&
+            user !== null && user !== undefined && user.geslachtsaanduiding !== undefined &&
             <ListItemText primary={user.geslachtsaanduiding} className={classes.dataWithAction} />
           }
           </ListItem>

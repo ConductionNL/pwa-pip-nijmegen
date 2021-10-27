@@ -6,12 +6,12 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Alert, FormControl, InputLabel, MenuItem, Select, Snackbar, TextField} from "@mui/material";
+import {ChevronRight} from "@mui/icons-material";
 import {useAppContext} from "../context/state";
 import {useUserContext} from "../context/userContext";
 import {useResidentContext} from "../context/residentContext";
-import CloseIcon from '@mui/icons-material/Close';
 
-export function ClaimModal() {
+export function ClaimModal(props) {
   const [open, setOpen] = React.useState(false);
   const [type, setType] = React.useState('akte_van_geboorte');
 
@@ -20,7 +20,9 @@ export function ClaimModal() {
   };
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   const context = useAppContext();
   const userContext = useUserContext();
@@ -29,15 +31,13 @@ export function ClaimModal() {
   const handleClaim = event => {
     event.preventDefault();
 
-    console.log('yes');
-
     let data = {
       organization: '001516814',
       type: type,
-      person: context.brpUrl + residentContext.resident['@id']
+      person: context.brpUrl + "/ingeschrevenpersonen/" + userContext.user.bsn
     }
 
-    fetch(context.apiUrl + '/gateways/service/certificates', {
+    fetch(context.apiUrl + '/gateways/waardepapieren-service/certificates', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -45,6 +45,8 @@ export function ClaimModal() {
     })
       .then((response) => {
         if (response.ok) {
+          handleClose();
+          props.refreshTable();
           return response.json();
         } else {
           throw new Error('Something went wrong');
@@ -52,18 +54,19 @@ export function ClaimModal() {
       })
       .then((data) =>  {
         if (typeof window !== "undefined") {
-          console.log(data);
           handleClose();
         }
       }).catch((error) => {
-        console.log(error)
+      console.log(error)
     });
 
   }
 
   return (
     <div>
-      <Button color="primary" onClick={handleOpen} sx={{width: "400px", marginBottom: "100px"}} type="button" variant="contained" >Aanmaken</Button>
+      <div style={{textAlign: "right"}}>
+      <Button color="primary" onClick={handleOpen} sx={{width: "200px", marginBottom: "20px"}} type="button" variant="contained" >Aanmaken</Button>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -88,24 +91,23 @@ export function ClaimModal() {
             p: 4,
 
           }}>
-            <div style={{float: 'right'}} onClick={handleClose}><CloseIcon/></div>
-            <Typography style={{marginTop: 30}} id="transition-modal-title" variant="h5" mb={2} component="h2">
-              Nieuw uittreksel
+            <Typography id="transition-modal-title" variant="h5" mb={2} component="h2">
+              Claim aanmaken
             </Typography>
-            <br/>
             <br/>
             <form onSubmit={handleClaim}>
               <FormControl fullWidth>
-                <InputLabel id="type">Type</InputLabel>
+                <InputLabel id="demo-simple-select-label">Type</InputLabel>
                 <Select
-                  labelId="type"
+                  labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={type}
                   label="Type"
                   onChange={handleChange}
                 >
-                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn &euro;14,30</MenuItem>
-                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen &euro;14,30 - &euro;28,60</MenuItem>
+                  <MenuItem value="akte_van_geboorte">Akte van geboorte</MenuItem>
+                  <MenuItem value="verklaring_van_in_leven_zijn">Verklaring van in leven zijn</MenuItem>
+                  <MenuItem value="uittreksel_basis_registratie_personen">Uittreksel basis registratie personen</MenuItem>
                 </Select>
               </FormControl>
               <br/>

@@ -19,19 +19,34 @@ function Index() {
   let userContext = useUserContext();
   let context = useAppContext();
 
-  console.log(userContext.user);
-
   const [user, setUser] = useState(null);
-  const [children, setChildren] = useState(null);
 
   useEffect(() => {
-    if (userContext.user !== null) {
-      getPerson();
-      getPersonsChildren();
+    if (typeof window !== "undefined") {
+      if (userContext.user !== null) {
+        getPerson();
+      }
     }
   }, []);
 
   const getPerson = () => {
+    fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn + "?expand=ouders,kinderen", {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (data.error !== undefined && data.error.status !== undefined && data.error.status == 404) {
+          getPersonWithoutExpand();
+        } else {
+          setUser(data);
+        }
+        console.log('BRP Persoon:')
+        console.log(data);
+      });
+  }
+
+  const getPersonWithoutExpand = () => {
     fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn, {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -39,22 +54,10 @@ function Index() {
       .then(response => response.json())
       .then((data) => {
         setUser(data);
+        console.log('BRP Persoon without expand:')
         console.log(data);
       });
   }
-
-  const getPersonsChildren = () => {
-    fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn + "/kinderen", {
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(response => response.json())
-      .then((data) => {
-        setChildren(data);
-        console.log(data);
-      });
-  }
-
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
@@ -67,24 +70,31 @@ function Index() {
         </Hidden>
         <Grid item sm={12} md={9}>
           <PageHeader title={title} />
-
           <Divider style={{marginTop: 20}}/>
-
           {
             user !== null &&
-              <PersonalList user={user} />
+            <PersonalList user={user} />
           }
           {
             user !== null &&
             <AddressList user={user} />
           }
-
-          <Divider />
-
-
-          <ChildrensList/>
-          <Divider/>
-          <ParentsList/>
+          {
+            user !== null && user['_embedded'] !== undefined && user['_embedded'] !== null && user['_embedded'].kinderen !== undefined && user['_embedded'].kinderen !== null &&
+            <Divider />
+          }
+          {
+            user !== null && user['_embedded'] !== undefined && user['_embedded'] !== null && user['_embedded'].kinderen !== undefined && user['_embedded'].kinderen !== null &&
+            <ChildrensList children={user['_embedded'].kinderen} />
+          }
+          {
+            user !== null && user['_embedded'] !== undefined && user['_embedded'] !== null && user['_embedded'].ouders !== undefined && user['_embedded'].ouders !== null &&
+            <Divider />
+          }
+          {
+            user !== null && user['_embedded'] !== undefined && user['_embedded'] !== null && user['_embedded'].ouders !== undefined && user['_embedded'].ouders !== null &&
+            <ParentsList parents={user['_embedded'].ouders} />
+          }
           <Divider/>
           <AddressesList/>
           <Divider/>
