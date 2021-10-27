@@ -8,39 +8,37 @@ import {useUserContext} from "../context/userContext";
 
 export default function ClaimsTable() {
 
-  const [claims, setClaims] = React.useState(null);
   const userContext = useUserContext();
   const context = useAppContext();
+
+  const [claims, setClaims] = React.useState(null);
 
   useEffect(() => {
     fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + userContext.user.bsn, {
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+        'Content-Type': 'application/json'
       },
     })
       .then(response => response.json())
-      .then((data) =>  {
+      .then((data) => {
         setClaims(data['hydra:member']);
+        console.log('Certs:')
         console.log(data)
       });
   }, []);
 
-  const refreshTable = () => {
-    setClaims(null);
-    fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + context.brpUrl + "/ingeschrevenpersonen/" + userContext.user.bsn, {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
-      },
-    })
-      .then(response => response.json())
-      .then((data) =>  {
-        setClaims(data['hydra:member']);
-      });
-  }
+  //const refreshTable = () => {
+  //  setClaims(null);
+  //  fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + context.brpUrl + "/ingeschrevenpersonen/" + userContext.user.bsn, {
+  //    credentials: 'include',
+  //    headers: {'Content-Type': 'application/json'},
+  //  })
+  //    .then(response => response.json())
+  //    .then((data) =>  {
+  //      setClaims(data['hydra:member']);
+  //    });
+  //}
 
   const columns = [
     { field: 'id', headerName: 'ID', flex: 1, hide: true },
@@ -105,39 +103,39 @@ export default function ClaimsTable() {
 
   return (
     <>
-      <ClaimModal refreshTable={refreshTable} />
+      {/*<ClaimModal refreshTable={refreshTable} />*/}
 
       <div style={{ height: 400, width: '100%' }}>
-        {/*{ claims !== null ? (*/}
-        {/*    <DataGrid*/}
-        {/*      rows={claims}*/}
-        {/*      columns={columns}*/}
-        {/*      pageSize={100}*/}
-        {/*      rowsPerPageOptions={[100]}*/}
-        {/*      disableSelectionOnClick*/}
-        {/*      sortModel={[{ field: 'dateCreated', sort: 'desc' }]}*/}
-        {/*    />*/}
-        {/*  )*/}
-        {/*  :*/}
-        {/*  (*/}
-        {/*    <DataGrid*/}
-        {/*      rows={[]}*/}
-        {/*      loading={true}*/}
-        {/*      columns={columns}*/}
-        {/*      pageSize={100}*/}
-        {/*      rowsPerPageOptions={[100]}*/}
-        {/*      disableSelectionOnClick*/}
-        {/*    />*/}
-        {/*  )*/}
-        {/*}*/}
-        <DataGrid
-          rows={[]}
-          loading={true}
-          columns={columns}
-          pageSize={100}
-          rowsPerPageOptions={[100]}
-          disableSelectionOnClick
-        />
+          { claims !== null ? (
+            <DataGrid
+             rows={claims}
+             columns={columns}
+             pageSize={100}
+             rowsPerPageOptions={[100]}
+              disableSelectionOnClick
+              sortModel={[{ field: 'dateCreated', sort: 'desc' }]}
+            />
+          )
+          :
+          (
+            <DataGrid
+              rows={[]}
+              loading={true}
+              columns={columns}
+              pageSize={100}
+              rowsPerPageOptions={[100]}
+              disableSelectionOnClick
+            />
+          )
+        }
+        {/*<DataGrid*/}
+        {/*  rows={[]}*/}
+        {/*  loading={true}*/}
+        {/*  columns={columns}*/}
+        {/*  pageSize={100}*/}
+        {/*  rowsPerPageOptions={[100]}*/}
+        {/*  disableSelectionOnClick*/}
+        {/*/>*/}
       </div>
     </>
   );
