@@ -2,19 +2,44 @@ import React, {useEffect} from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from "@mui/material/Button";
 import {documentDownload} from "../utility/DocumentDownload";
-import {useResidentContext} from "../context/residentContext";
 import {useAppContext} from "../context/state";
-import {useGet} from "restful-react";
+import {ClaimModal} from "./ClaimModal";
+import {useUserContext} from "../context/userContext";
 
 export default function ClaimsTable() {
 
-  let { data: claims } = useGet({
-    path: "gateways/register/certificates"
-  });
+  const [claims, setClaims] = React.useState(null);
+  const userContext = useUserContext();
+  const context = useAppContext();
 
-  /* lets catch hydra */
-  if (claims != null && claims["hydra:member"] !== undefined) {
-    claims = claims["hydra:member"];
+  useEffect(() => {
+    fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + userContext.user.bsn, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      },
+    })
+      .then(response => response.json())
+      .then((data) =>  {
+        setClaims(data['hydra:member']);
+        console.log(data)
+      });
+  }, []);
+
+  const refreshTable = () => {
+    setClaims(null);
+    fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + context.brpUrl + "/ingeschrevenpersonen/" + userContext.user.bsn, {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
+      },
+    })
+      .then(response => response.json())
+      .then((data) =>  {
+        setClaims(data['hydra:member']);
+      });
   }
 
   const columns = [
@@ -23,11 +48,20 @@ export default function ClaimsTable() {
       field: 'type',
       headerName: 'Type',
       flex: 1,
+      valueFormatter: (params) => {
+        const valueFormatted = params.value.replaceAll('_', ' ');
+        return `${valueFormatted}`;
+      },
     },
     {
-      field: 'organization',
-      headerName: 'Organisatie',
+      field: 'dateCreated',
+      headerName: 'Aangemaakt op',
       flex: 1,
+      valueFormatter: (params) => {
+        let valueFormatted = new Date(params.value);
+        let result = valueFormatted.toLocaleString("en-GB");
+        return `${valueFormatted}`;
+      },
     },
     {
       field: "Pdf",
@@ -70,31 +104,41 @@ export default function ClaimsTable() {
   ];
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      { claims ? (
-          <DataGrid
-            rows={claims}
-            columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
-            checkboxSelection
-            disableSelectionOnClick
-          />
-        )
-        :
-        (
-          <DataGrid
-            rows={[]}
-            loading={true}
-            columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
-            checkboxSelection
-            disableSelectionOnClick
-          />
-        )
-      }
+    <>
+      <ClaimModal refreshTable={refreshTable} />
 
-    </div>
+      <div style={{ height: 400, width: '100%' }}>
+        {/*{ claims !== null ? (*/}
+        {/*    <DataGrid*/}
+        {/*      rows={claims}*/}
+        {/*      columns={columns}*/}
+        {/*      pageSize={100}*/}
+        {/*      rowsPerPageOptions={[100]}*/}
+        {/*      disableSelectionOnClick*/}
+        {/*      sortModel={[{ field: 'dateCreated', sort: 'desc' }]}*/}
+        {/*    />*/}
+        {/*  )*/}
+        {/*  :*/}
+        {/*  (*/}
+        {/*    <DataGrid*/}
+        {/*      rows={[]}*/}
+        {/*      loading={true}*/}
+        {/*      columns={columns}*/}
+        {/*      pageSize={100}*/}
+        {/*      rowsPerPageOptions={[100]}*/}
+        {/*      disableSelectionOnClick*/}
+        {/*    />*/}
+        {/*  )*/}
+        {/*}*/}
+        <DataGrid
+          rows={[]}
+          loading={true}
+          columns={columns}
+          pageSize={100}
+          rowsPerPageOptions={[100]}
+          disableSelectionOnClick
+        />
+      </div>
+    </>
   );
 }

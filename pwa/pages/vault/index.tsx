@@ -24,10 +24,6 @@ function Index() {
         <Grid item sm={12} md={9}>
           <PageHeader title={title} />
           <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
-            <Grid item xs={12} sm={12} md={12} style={{textAlign: 'right'}}>
-              <ClaimModal />
-            </Grid>
-            <br/>
             <Grid item xs={12} sm={12} md={12}>
               <ClaimsTable/>
             </Grid>
