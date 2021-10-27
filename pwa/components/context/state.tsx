@@ -10,6 +10,7 @@ export function AppWrapper({ children }) {
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL !== undefined ? process.env.NEXT_PUBLIC_BASE_URL : 'http://localhost',
     frontendUrl: process.env.NEXT_PUBLIC_FRONTEND_URL !== undefined ? process.env.NEXT_PUBLIC_FRONTEND_URL : 'http://localhost:3000',
     organization: process.env.NEXT_PUBLIC_ORGANIZATION !== undefined ? process.env.NEXT_PUBLIC_ORGANIZATION : 'http://webresourcecatalogus.conduction.svc.cluster.local/organizations/b2d3176e-f1c6-4365-ab86-dd253c65fc43',
+    brpUrl: process.env.NEXT_PUBLIC_BRP_URL !== undefined ? process.env.NEXT_PUBLIC_BRP_URL : 'http://brpservice.waardepapieren.svc.cluster.local',
   }
 
   return (
