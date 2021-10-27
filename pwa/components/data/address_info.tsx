@@ -58,7 +58,7 @@ export default function AddressList({user = null}) {
               Straat
           </ListItemIcon>
           {
-            user !== null && user.verblijfplaats !== null && user.verblijfplaats.adresregel1 !== null &&
+            user !== null && user.verblijfplaats !== undefined && user.verblijfplaats !== null && user.verblijfplaats.adresregel1 !== undefined && user.verblijfplaats.adresregel1 !== null &&
             <ListItemText primary={user.verblijfplaats.adresregel1} className={classes.dataWithAction} />
           }
             <ListItemIcon>
@@ -73,7 +73,7 @@ export default function AddressList({user = null}) {
               Plaats
           </ListItemIcon>
           {
-            user !== null && user.verblijfplaats !== null && user.verblijfplaats.woonplaats !== null &&
+            user !== null && user.verblijfplaats !== undefined && user.verblijfplaats !== null && user.verblijfplaats.woonplaats !== null &&
             <ListItemText primary={user.verblijfplaats.woonplaats} className={classes.dataWithAction} />
           }
           </ListItem>
@@ -83,7 +83,7 @@ export default function AddressList({user = null}) {
               Vanaf
           </ListItemIcon>
           {
-            user !== null && user.verblijfplaats !== null && user.verblijfplaats.datumAanvangAdreshouding !== null &&
+            user !== null && user.verblijfplaats !== undefined && user.verblijfplaats !== null && user.verblijfplaats.datumAanvangAdreshouding !== null &&
             <ListItemText primary={user.verblijfplaats.datumAanvangAdreshouding.datum} className={classes.dataWithAction} />
           }
           </ListItem>

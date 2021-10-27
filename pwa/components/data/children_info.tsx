@@ -28,26 +28,8 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ChildrensList({data = null}) {
+export default function ChildrensList({children = null}) {
   const classes = useStyles();
-
-  if (data == null) {
-    var {data: data} = useGet({
-      path: "/data"
-    });
-  }
-
-  console.log('data:');
-  console.log(data);
-
-  /* lets catch hydra */
-  if (data != null && data["results"] !== undefined) {
-    data = data["results"];
-
-    for (let i = 0; i < data.length; i++) {
-      data[i].id = data[i].identificatie;
-    }
-  }
 
   const [open, setOpen] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(true);
@@ -75,33 +57,39 @@ export default function ChildrensList({data = null}) {
         </ListItemText>
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem sx={{ pl: 4 }}>
-            <ListItemIcon className={classes.label}>
-              Voornamen
-            </ListItemIcon>
-            <ListItemText primary="Sarai" className={classes.dataWithAction}/>
-            <ListItemIcon>
-              <Link href="/moving/address">
-                <Button size="small" variant="text" startIcon={<ChevronRight/>}> Inzien of correctie doorgeven</Button>
-              </Link>
-            </ListItemIcon>
-          </ListItem>
 
-          <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
-            <ListItemIcon className={classes.label}>
-              Achternaam
-            </ListItemIcon>
-            <ListItemText primary="Misidjan" className={classes.dataWithAction} />
-          </ListItem>
+        {
+          children !== null &&
+          children.map((row) => (
+            <List component="div" disablePadding>
+              <ListItem sx={{ pl: 4 }}>
+                <ListItemIcon className={classes.label}>
+                  Voornamen
+                </ListItemIcon>
+                <ListItemText primary={row.naam.voornamen} className={classes.dataWithAction} />
+              </ListItem>
 
-          <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
-            <ListItemIcon className={classes.label}>
-              Geslacht
-            </ListItemIcon>
-            <ListItemText primary="Vrouw" className={classes.dataWithAction}/>
-          </ListItem>
-        </List>
+              <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
+                <ListItemIcon className={classes.label}>
+                  Achternaam
+                </ListItemIcon>
+                {
+                  row.naam.voorvoegsel !== undefined && row.naam.voorvoegsel !== null ?
+                    <ListItemText primary={row.naam.voorvoegsel + ' ' + row.naam.geslachtsnaam} className={classes.dataWithAction} /> :
+                    <ListItemText primary={row.naam.geslachtsnaam} className={classes.dataWithAction} />
+                }
+              </ListItem>
+              {
+                row.geslachtsaanduiding !== undefined && row.geslachtsaanduiding !== null &&
+              <ListItem sx={{ pl: 4 }} className={classes.marginTop}>
+                <ListItemIcon className={classes.label}>
+                  Geslacht
+                </ListItemIcon>
+                <ListItemText primary={row.geslachtsaanduiding} className={classes.dataWithAction} />
+                </ListItem>
+              }
+            </List>
+          ))}
       </Collapse>
     </List>
   );
