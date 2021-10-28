@@ -53,6 +53,7 @@ export default function DocumentsTable() {
       { rows ?
         (
           <DataGrid
+            style={{backgroundColor: 'white'}}
             rows={rows}
             columns={columns}
             pageSize={100}

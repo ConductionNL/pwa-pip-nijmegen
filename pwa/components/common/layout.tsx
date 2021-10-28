@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   containerRuben: {
     paddingTop: theme.spacing(24, 24, 24, 24),
     backgroundColor: '#F5F5F5',
+  },
+  root: {
+    backgroundColor: theme.palette.background.default
   }
 }));
 
@@ -52,23 +55,24 @@ const Layout = ({children, title="Welcome to Demodam!", h1 =null, description="d
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Head>
-          <title>{title}</title>
-        </Head>
+        <ThemeProvider theme={theme}>
+          <Head>
+            <title>{title}</title>
+          </Head>
 
-        <UserManagement />
+          <UserManagement />
 
-        <Header/>
+          <Header/>
 
-        <Container>
-          <Box paddingTop={2} paddingBottom={2}>
-          {children}
-          </Box>
-        </Container>
-
-        <Footer />
-      </ThemeProvider>
+          <div className={classes.root}>
+            <Container>
+              <Box paddingTop={2} paddingBottom={2}>
+                {children}
+              </Box>
+            </Container>
+          </div>
+          <Footer />
+        </ThemeProvider>
     </>
   );
 
