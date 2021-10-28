@@ -69,7 +69,11 @@ function Index() {
           </Grid>
         </Hidden>
         <Grid item sm={12} md={9}>
-          <PageHeader title={title} />
+          <PageHeader title={title} crumbs={[
+            {
+              name: 'Mijn gegevens'
+            }
+          ]} />
           <Divider style={{marginTop: 20}}/>
           {
             user !== null &&

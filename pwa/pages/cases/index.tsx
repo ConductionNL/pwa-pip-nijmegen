@@ -21,7 +21,13 @@ function Index() {
           </Grid>
         </Hidden>
         <Grid item sm={12} md={9}>
-          <PageHeader title={title} />
+          <PageHeader title={title} crumbs={
+            [
+              {
+                name: "Aanvragen",
+              },
+            ]
+          } />
           <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={12} style={{textAlign: 'right'}}>

@@ -35,7 +35,7 @@ const Product = () => {
             [
               {
                 name: "Aanvragen",
-                link: "/claims"
+                link: "/cases"
               },
 
               {
