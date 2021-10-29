@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import React from "react";
+import React, {useEffect} from "react";
 import Layout from "../../components/common/layout";
 import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
@@ -7,20 +7,41 @@ import {useGet, Poll, Get} from "restful-react";
 import Hidden from "@mui/material/Hidden";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Card, CardContent, Link, Stack, TextField, Typography} from "@mui/material";
+import {Card, CardContent, Link, Skeleton, Stack, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import CasesTable from "../../components/cases/casesTable";
 import DocumentsTable from "../../components/cases/documentsTable";
+import {useAppContext} from "../../components/context/state";
 
 const Product = () => {
 
   const router = useRouter()
   const {id} = router.query
-  const {data: zaak} = useGet({
-    path: "gateways/zaken/zaken/" + id,
-  });
+  const [dossier, setDossier] = React.useState(null);
+  const context = useAppContext();
 
-  const title = "0500-bzn-4js"
+  const getDossier = () => {
+    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "dossierIds": [
+          id
+        ],
+      })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setDossier(data.result.content[0]);
+      });
+  }
+
+  useEffect(() => {
+    getDossier()
+  }, []);
+
+  let title = dossier !== null ? dossier.dossierId : <Skeleton width={150} height={50} variant="text" />
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
@@ -39,7 +60,7 @@ const Product = () => {
               },
 
               {
-                name: "0500-bzn-4js"
+                name: dossier !== null ? dossier.dossierId : <Skeleton width={150} variant="text" />
               }
             ]
           }/>
@@ -47,14 +68,44 @@ const Product = () => {
             <Grid container spacing={2}>
               <Stack style={{width: '100%'}} direction={"row"} justifyContent={"space-around"}>
                 <div>
-                  <Typography><span style={{fontWeight: "bold"}}>Type:</span> Death in municipality</Typography>
+                  <Typography> {
+                    dossier !== null
+                      ?
+                        <>
+                          <span style={{fontWeight: "bold"}}>Type: </span>
+                          {dossier.type.description}
+                        </>
+                      :
+                      <Skeleton width={150} variant="text" />
+                  }</Typography>
                 </div>
-
-                <Typography><span style={{fontWeight: "bold"}}>Status:</span> Incomplete</Typography>
-                <Typography><span style={{fontWeight: "bold"}}>start datum:</span> 2020-08-16</Typography>
+                <div>
+                  <Typography> {
+                    dossier !== null
+                      ?
+                      <>
+                        <span style={{fontWeight: "bold"}}>Status: </span>
+                        {dossier.status.description}
+                      </>
+                      :
+                      <Skeleton width={150} variant="text" />
+                  }</Typography>
+                </div>
+                <div>
+                  <Typography> {
+                    dossier !== null
+                      ?
+                      <>
+                        <span style={{fontWeight: "bold"}}>Start datum: </span>
+                        {dossier.startDate}
+                      </>
+                      :
+                      <Skeleton width={150} variant="text" />
+                  }</Typography>
+                </div>
               </Stack>
               <Grid item xs={12} sm={12} md={12}>
-                <DocumentsTable/>
+                <DocumentsTable dossier={id} />
               </Grid>
             </Grid>
           </Box>

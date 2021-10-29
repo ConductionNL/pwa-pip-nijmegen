@@ -90,7 +90,6 @@ export default function CasesTable() {
               columns={columns}
               pageSize={100}
               rowsPerPageOptions={[100]}
-              checkboxSelection
               disableSelectionOnClick
             />
           )
@@ -102,7 +101,6 @@ export default function CasesTable() {
               columns={columns}
               pageSize={100}
               rowsPerPageOptions={[100]}
-              checkboxSelection
               disableSelectionOnClick
             />
           )

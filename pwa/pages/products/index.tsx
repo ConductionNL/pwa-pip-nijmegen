@@ -37,7 +37,11 @@ function Index() {
           </Grid>
         </Hidden>
         <Grid item sm={12} md={9} style={{marginTop: 20}}>
-          <PageHeader title={title} />
+          <PageHeader title={title} crumbs={[
+            {
+              name: 'Diensten'
+            }
+          ]} />
           <Box paddingTop={2} paddingBottom={2}>
           </Box>
 
