@@ -26,6 +26,9 @@ export default function Index() {
 
   let userContext = useUserContext();
 
+  useEffect(() => {console.log(context)}, []);
+
+
   return (<>
 
     <Layout title="Welkom bij Mijn Omgeving Nijmegen" description="waar kan ik deze description zien">
