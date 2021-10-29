@@ -38,10 +38,12 @@ const Product = () => {
   }
 
   useEffect(() => {
-    getDossier()
-  }, []);
+    if (id !== undefined) {
+      getDossier()
+    }
+  }, [id]);
 
-  let title = dossier !== null ? dossier.dossierId : <Skeleton width={150} height={50} variant="text" />
+  let title = dossier !== null ? dossier.dossierId : "aan het laden.."
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
@@ -105,7 +107,10 @@ const Product = () => {
                 </div>
               </Stack>
               <Grid item xs={12} sm={12} md={12}>
-                <DocumentsTable dossier={id} />
+                {
+                  id !== undefined &&
+                  <DocumentsTable dossier={id} />
+                }
               </Grid>
             </Grid>
           </Box>
