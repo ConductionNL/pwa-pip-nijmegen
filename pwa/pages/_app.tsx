@@ -9,6 +9,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import {UserContextWrapper} from "../components/context/userContext";
 import {RestfulProvider} from "restful-react";
 import {RestfulProviderWrapper} from "../components/utility/RestfulProviderWrapper";
+import {CssBaseline, GlobalStyles} from "@mui/material";
 
 
 declare module '@mui/styles/defaultTheme' {
@@ -17,13 +18,14 @@ declare module '@mui/styles/defaultTheme' {
 }
 
 
-const theme = createTheme();
-
-const useStyles = makeStyles((theme) => {
-  root: {
-    // some css that access to theme
+const theme = createTheme({
+  palette: {
+    background: {
+      default: "#FAFAFA"
+    }
   }
 });
+
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -31,8 +33,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AppWrapper>
         <UserContextWrapper>
           <StyledEngineProvider injectFirst>
+
             <ThemeProvider theme={theme}>
               <RestfulProviderWrapper>
+                <CssBaseline />
                 <Component {...pageProps} />
               </RestfulProviderWrapper>
             </ThemeProvider>

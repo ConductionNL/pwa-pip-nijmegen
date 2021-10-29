@@ -20,7 +20,10 @@ import LogoutIcon from "@mui/icons-material/ExitToApp";
 import {useUserContext} from "../context/userContext";
 import Typography from "@mui/material/Typography";
 import {Login} from "@mui/icons-material";
-import {useAppContext} from "../context/state";
+import { useAppContext } from "../context/state";
+import CallIcon from '@mui/icons-material/Call';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const useStyles = makeStyles((theme) => ({
   footerStyle: {
@@ -32,12 +35,27 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
+  footerImage: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      alignItems: "center",
+      justifyContent: "center"
+},
+  },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
+  footerItem: {
+    textDecoration: "none !important",
+    '&:hover': {
+      textDecoration: "underline !important",
+      color: "white"
+    },
+  }
 }));
 
 export default function Footer() {
@@ -73,22 +91,95 @@ export default function Footer() {
   let userContext = useUserContext();
 
   return (
-    <footer  className={classes.footerStyle}>
-      <Paper style={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
-        <BottomNavigation
-          value={state['bottumNavigation']} onChange={handleChange}
-          showLabels
-          className={classes.sectionMobile}
-        >
-          {
-            userContext.user !== null
-              ?
-              <BottomNavigationAction onClick={handleLogout} label="Logout" icon={<LogoutIcon/>}/>
-              :
-              <BottomNavigationAction onClick={handleLogin} label="Login" icon={<Login/>}/>
-          }
-        </BottomNavigation>
-      </Paper>
+    <footer>
+      {/*<Paper style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>*/}
+      {/*  <BottomNavigation*/}
+      {/*    value={state['bottumNavigation']} onChange={handleChange}*/}
+      {/*    showLabels*/}
+      {/*    className={classes.sectionMobile}*/}
+      {/*  >*/}
+
+      {/*    <BottomNavigationAction label="Home" icon={<HomeIcon />} />*/}
+      {/*    <BottomNavigationAction label="Klantvragen" icon={<SearchIcon />} />*/}
+      {/*    <BottomNavigationAction label="Notificaties" icon={<NotificationsIcon />} />*/}
+      {/*    <BottomNavigationAction label="Chatten" icon={<ChatIcon />} />*/}
+      {/*    <BottomNavigationAction label="Logout" icon={<LogoutIcon />} />*/}
+      {/*  </BottomNavigation>*/}
+      {/*</Paper>*/}
+      <Box 
+        px={{ xs: 3, sm: 10 }}
+        py={{ xs: 5, sm: 10 }}
+        bgcolor="#3A3A3A"
+        color="white"
+        className={classes.sectionDesktop}
+      >
+        <Container maxWidth="lg">
+          <Grid container spacing={5}>
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <Typography variant="h5" component="h5" style={{ textDecoration: 'none' }}>
+                  Diensten
+                </Typography>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/moving" color="inherit" className={classes.footerItem}>
+                  Verhuizen
+                </Link>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/marriage" color="inherit" className={classes.footerItem}>
+                  Huwelijk
+                </Link>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="/certificates" color="inherit" className={classes.footerItem}>
+                  Uittreksels
+                </Link>
+              </Box>
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <Typography variant="h5" component="h5" style={{ textDecoration: 'none '}}>
+                  Contact
+                </Typography>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <LocationOnIcon/> Stadswinkel, Mariënburg 30
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="tel:14 024" color="inherit" className={classes.footerItem}>
+                  <CallIcon/> 14 024
+                </Link>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                <Link href="mailto:gemeente@nijmegen.nl" color="inherit" className={classes.footerItem}>
+                  <EmailIcon/> gemeente@nijmegen.nl
+                </Link>
+              </Box>
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <Box>
+                <Typography variant="h5" component="h5" style={{ textDecoration: 'none'}}>
+                  Openingstijden
+                </Typography>
+              </Box>
+              <Box sx={{ marginBottom: '15px', marginTop: '15px' }}>
+                Maandag - woensdag: 9.00 - 17.00 <br/>
+                Donderdag: 9.00 - 20.00 <br/>
+                Vrijdag: 9.00 - 17.00
+              </Box>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Box>
+
+
+      <div className={classes.footerImage} style={{ backgroundColor: "#212121", paddingTop: "20px", paddingBottom: "20px"}}>
+        <img height="32px" width="150px" src="/logo_nijmegen_wit.svg" />
+      </div>
     </footer>
   );
 }

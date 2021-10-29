@@ -17,18 +17,33 @@ const useStyles = makeStyles((theme) => ({
   containerRuben: {
     paddingTop: theme.spacing(24, 24, 24, 24),
     backgroundColor: '#F5F5F5',
+  },
+  root: {
+    backgroundColor: theme.palette.background.default
   }
 }));
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#001759" 
+      main: "#157c68",
     },
     secondary: {
-      main: "#ddc999"
+      main: "#a80a2d"
+    },
+    text: {
+      primary: "#000000"
     }
   },
+  components: {
+      MuiButton: {
+        styleOverrides: {
+          outlined: {
+            backgroundColor: "green"
+          }
+        }
+      }
+  }
 });
 
 
@@ -40,23 +55,24 @@ const Layout = ({children, title="Welcome to Demodam!", h1 =null, description="d
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Head>
-          <title>{title}</title>
-        </Head>
+        <ThemeProvider theme={theme}>
+          <Head>
+            <title>{title}</title>
+          </Head>
 
-        <UserManagement />
+          <UserManagement />
 
-        <Header/>
+          <Header/>
 
-        <Container>
-          <Box paddingTop={2} paddingBottom={2}>
-          {children}
-          </Box>
-        </Container>
-
-        <Footer />
-      </ThemeProvider>
+          <div className={classes.root}>
+            <Container>
+              <Box paddingTop={2} paddingBottom={2}>
+                {children}
+              </Box>
+            </Container>
+          </div>
+          <Footer />
+        </ThemeProvider>
     </>
   );
 

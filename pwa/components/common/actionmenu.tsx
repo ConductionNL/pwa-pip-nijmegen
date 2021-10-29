@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
 
 import { useRouter } from 'next/router';
 import MessageIcon from '@mui/icons-material/Message';
@@ -20,12 +21,20 @@ import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import HomeIcon from '@mui/icons-material/Home';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {ListItemButton} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 275,
-    backgroundColor: theme.palette.background.paper,
+    maxWidth: 360,
+  },
+  paddingMobile: {
+    [theme.breakpoints.down('md')]: {
+      padding: '15px',
+    },
+  },
+  paddingListItemMobile: {
+      marginTop: '12px !important',
   },
 }));
 
@@ -39,69 +48,48 @@ export default function ActionMenu() {
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" aria-label="main mailbox folders" className={classes.paddingMobile}>
 
-        <ListItem button onClick={() => router.push('/user')}>
-          <ListItemIcon>
-            <RadioButtonCheckedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button onClick={() => router.push('/products')}>
+
+        <ListItem button onClick={() => router.push('/products')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
-          <ListItemText primary="Producten en Diensten" />
-        </ListItem>
-        <Divider />
-        <ListItem button onClick={() => router.push('/messages')}>
-          <ListItemIcon>
-            <MessageIcon />
-          </ListItemIcon>
-          <ListItemText primary="Berichtenbox" />
+          <ListItemText
+            disableTypography
+            primary={<Typography>Diensten</Typography>}
+          />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/tasks')}>
-          <ListItemIcon>
-            <PlaylistAddCheckIcon />
-          </ListItemIcon>
-          <ListItemText primary="Taken" />
-        </ListItem>
 
-        <ListItem button onClick={() => router.push('/cases')}>
+        <ListItem button onClick={() => router.push('/cases')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <SubscriptionsIcon />
           </ListItemIcon>
-          <ListItemText primary="Lopende Zaken" />
+          <ListItemText
+            disableTypography
+            primary={<Typography>Mijn aanvragen</Typography>}
+          />
         </ListItem>
 
-        <Divider />
-        <ListItem button onClick={() => router.push('/data')}>
+        <ListItem button onClick={() => router.push('/data')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <AssignmentIndIcon />
+            <AssignmentIndIcon/>
           </ListItemIcon>
-          <ListItemText primary="Identiteit" />
+          <ListItemText
+            disableTypography
+            primary={<Typography>Mijn gegevens</Typography>}
+          />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/workAndIncome')}>
-          <ListItemIcon>
-            <WorkIcon />
-          </ListItemIcon>
-          <ListItemText primary="Werk en Inkomen" />
-        </ListItem>
-
-        <ListItem button onClick={() => router.push('/livingAndTax')}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Wonen en Belasting" />
-        </ListItem>
-
-        <ListItem button onClick={() => router.push('/vault')}>
+        <ListItem button onClick={() => router.push('/vault')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
             <LockIcon />
           </ListItemIcon>
-          <ListItemText primary="Datakluis" />
+          <ListItemText
+            disableTypography
+            primary={<Typography>Mijn kluis</Typography>}
+          />
         </ListItem>
 
       </List>
