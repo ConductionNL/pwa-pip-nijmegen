@@ -1,5 +1,3 @@
-/helm/charts/*
-!/helm/charts/.gitignore
 /certs
 .idea/
 
