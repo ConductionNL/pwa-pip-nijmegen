@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from '@mui/material/Grid';
 
 import ActionMenu from 'components/common/actionmenu';
@@ -25,7 +25,6 @@ export default function Index() {
   }
 
   let userContext = useUserContext();
-
 
   return (<>
 
@@ -69,7 +68,7 @@ export default function Index() {
         </Grid>
         <Grid item xs={12}>
           <Typography style={{color: '#A80A2D', marginTop: '20px'}} variant="h4" component="h4">
-            Wat moet u weten 
+            Wat moet u weten
           </Typography>
         </Grid>
         <Grid item xs={12}>
