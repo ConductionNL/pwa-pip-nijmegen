@@ -5,7 +5,7 @@ const AppContext = createContext(undefined);
 export function AppWrapper({ children }) {
 
   let sharedState = {
-    meUrl: 'https://nijmegen.commonground.nu/api/user/me',
+    meUrl: 'https://nijmegen.commonground.nu/api/users/me',
     apiUrl: 'https://nijmegen.commonground.nu/api',
     baseUrl: 'https://nijmegen.commonground.nu',
     frontendUrl: 'https://nijmegen.commonground.nu',
