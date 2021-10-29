@@ -49,7 +49,7 @@ export default function ParentsList({parents = null}) {
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      <ListItem onClick={handleClick} className={classes.data}>
+      <ListItem onClick={handleClick}>
         <ListItemIcon>
           {open ? <ExpandLess /> : <ChevronRight />}
         </ListItemIcon>

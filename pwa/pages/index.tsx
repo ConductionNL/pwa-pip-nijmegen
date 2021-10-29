@@ -58,15 +58,18 @@ export default function Index() {
         </Grid>
         <Grid item xs={12}>
           <Box style={{ padding: '15px', background: '#157C68', width: '265px', marginTop: '20px' }}>
+            {
+              context.baseUrl !== null && context.baseUrl != undefined &&
+              <Link
+                href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "?state=8412312632"}
+                style={{ textDecoration: 'none !important' }}>
+                <img src="/digid_button.svg" width='55px' height='55px'  />
+                <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
+                  INLOGGEN
+                </b>
+              </Link>
+            }
 
-            <Link
-              href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "?state=8412312632"}
-              style={{ textDecoration: 'none !important' }}>
-               <img src="/digid_button.svg" width='55px' height='55px'  />
-               <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
-                 INLOGGEN
-              </b>
-            </Link>
           </Box>
         </Grid>
         <Grid item xs={12}>

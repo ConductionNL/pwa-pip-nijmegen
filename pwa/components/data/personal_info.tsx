@@ -49,7 +49,7 @@ export default function PersonalList({ user = null}) {
           aria-labelledby="nested-list-subheader"
     >
       <ListItemText>
-        <Typography variant="h5" style={{fontWeight: 'bold'}} className={classes.data}>Persoonlijke gegevens</Typography>
+        <Typography variant="h5" style={{fontWeight: 'bold'}}>Persoonlijke gegevens</Typography>
       </ListItemText>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>

@@ -41,8 +41,6 @@ function Index() {
         } else {
           setUser(data);
         }
-        console.log('BRP Persoon:')
-        console.log(data);
       });
   }
 
@@ -54,8 +52,6 @@ function Index() {
       .then(response => response.json())
       .then((data) => {
         setUser(data);
-        console.log('BRP Persoon without expand:')
-        console.log(data);
       });
   }
 
