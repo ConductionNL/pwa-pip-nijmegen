@@ -21,12 +21,12 @@ import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import HomeIcon from '@mui/icons-material/Home';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {ListItemButton} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
   },
   paddingMobile: {
     [theme.breakpoints.down('md')]: {
@@ -34,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paddingListItemMobile: {
-      paddingBottom: '10px !important',
-      paddingTop: '10px !important',
+      marginTop: '12px !important',
   },
 }));
 
@@ -51,49 +50,45 @@ export default function ActionMenu() {
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders" className={classes.paddingMobile}>
 
+
         <ListItem button onClick={() => router.push('/products')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <ShoppingCartIcon fontSize="large" />
+            <ShoppingCartIcon />
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={<Typography variant="h6">Diensten</Typography>}
+            primary={<Typography>Diensten</Typography>}
           />
         </ListItem>
 
-        <Divider />
 
         <ListItem button onClick={() => router.push('/cases')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <SubscriptionsIcon fontSize="large"/>
+            <SubscriptionsIcon />
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={<Typography variant="h6">Mijn aanvragen</Typography>}
+            primary={<Typography>Mijn aanvragen</Typography>}
           />
         </ListItem>
-
-        <Divider />
 
         <ListItem button onClick={() => router.push('/data')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <AssignmentIndIcon fontSize="large"/>
+            <AssignmentIndIcon/>
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={<Typography variant="h6">Mijn gegevens</Typography>}
+            primary={<Typography>Mijn gegevens</Typography>}
           />
         </ListItem>
 
-        <Divider />
-
         <ListItem button onClick={() => router.push('/vault')} className={classes.paddingListItemMobile}>
           <ListItemIcon>
-            <LockIcon fontSize="large" />
+            <LockIcon />
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={<Typography variant="h6">Mijn kluis</Typography>}
+            primary={<Typography>Mijn kluis</Typography>}
           />
         </ListItem>
 

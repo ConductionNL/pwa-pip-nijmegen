@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color"/>
         </Head>
         <body>
+        <script>0</script>
         <Main />
         <NextScript />
         </body>

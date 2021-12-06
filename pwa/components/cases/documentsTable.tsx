@@ -2,17 +2,9 @@ import React, {useEffect} from 'react';
 import {DataGrid, GridRenderCellParams} from '@mui/x-data-grid';
 import {useGet} from "restful-react";
 import {Link} from "@mui/material";
+import {useAppContext} from "../context/state";
 
-export default function DocumentsTable() {
-
-  let { data: cases } = useGet({
-    path: "gateways/cases"
-  });
-
-  /* lets catch hydra */
-  if (cases != null && cases["hydra:member"] !== undefined) {
-    cases = cases["hydra:member"];
-  }
+export default function DocumentsTable(props) {
 
   const columns = [
     { field: 'id', headerName: 'ID', flex: 1, hide: true },
@@ -39,25 +31,44 @@ export default function DocumentsTable() {
       ),flex: 1, float: 'right'},
   ];
 
-  function createData(title, filename, content, id) {
-    return {title, filename, content, id};
+  const [documents, setDocuments] = React.useState(null);
+  const context = useAppContext();
+
+  const getDocuments = () => {
+    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/' + props.dossier + '/documents', {
+      method: 'GET',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        let documents = data;
+
+        for (let i = 0; i < documents.length; i++) {
+          documents[i].id = i;
+        }
+
+        console.log(documents);
+
+        setDocuments(documents);
+      });
   }
 
-  const rows = [
-    createData('Example title', 'file.pdf', 'string', 1),
-    createData('Example title 2', 'file1.pdf', 'string', 2),
-  ];
+  useEffect(() => {
+    getDocuments();
+  }, []);
+
 
   return (
     <div style={{ height: 400, width: '100%', color: 'black' }}>
-      { rows ?
+      { documents ?
         (
           <DataGrid
-            rows={rows}
+            style={{backgroundColor: 'white'}}
+            rows={documents}
             columns={columns}
             pageSize={100}
             rowsPerPageOptions={[100]}
-            checkboxSelection
             disableSelectionOnClick
           />
         )
@@ -69,7 +80,6 @@ export default function DocumentsTable() {
             columns={columns}
             pageSize={100}
             rowsPerPageOptions={[100]}
-            checkboxSelection
             disableSelectionOnClick
           />
         )

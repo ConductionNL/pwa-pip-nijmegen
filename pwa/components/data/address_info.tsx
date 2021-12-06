@@ -50,7 +50,7 @@ export default function AddressList({user = null}) {
           aria-labelledby="nested-list-subheader"
     >
       <ListItemText>
-        <Typography variant="h5" style={{fontWeight: 'bold'}} className={classes.data}>Woonadres</Typography>
+        <Typography variant="h5" style={{fontWeight: 'bold'}}>Woonadres</Typography>
       </ListItemText>
       <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>

@@ -21,11 +21,17 @@ function Index() {
           </Grid>
         </Hidden>
         <Grid item sm={12} md={9}>
-          <PageHeader title={title} />
+          <PageHeader title={title} crumbs={
+            [
+              {
+                name: "Aanvragen",
+              },
+            ]
+          } />
           <Box paddingTop={3} paddingBottom={2} style={{marginTop: 20}}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={12} style={{textAlign: 'right'}}>
-              <Link href={'/products'}><Button color="primary" style={{marginBottom: 10}} sx={{width: "400px", marginBottom: "100px"}} type="button" variant="contained" >Aanmaken</Button></Link>
+              <Button color="primary" sx={{width: "200px", backgroundColor: "white", marginBottom: "100px"}} type="button" variant="contained" >Nieuwe aanvraag</Button>
             </Grid>
               <Grid item xs={12} sm={12} md={12}>
               <CasesTable/>
