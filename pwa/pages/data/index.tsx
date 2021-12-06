@@ -25,9 +25,49 @@ function Index() {
     if (typeof window !== "undefined") {
       if (userContext.user !== null) {
         getPerson();
+        getDossiers();
       }
     }
   }, []);
+
+  const getDossiers = () => {
+     fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/dossiers/search', {
+       method: 'POST',
+       credentials: 'include',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({
+         "dossierIds": [
+           "string"
+         ],
+         "bsns": [
+           userContext.user.bsn
+         ],
+         "types": [
+           "string"
+         ],
+         "statusses": [
+           "string"
+         ],
+         "entryDateTimePeriod": {
+           "from": "2021-10-27T14:24:50.636Z",
+           "to": "2021-10-27T14:24:50.636Z"
+         },
+         "startDatePeriod": {
+           "from": "2021-10-27",
+           "to": "2021-10-27"
+         },
+         "paging": {
+           "pageNumber": 0,
+           "pageSize": 10
+         }
+       })
+  })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+  }
+
 
   const getPerson = () => {
     fetch(context.apiUrl + "/gateways/brp/ingeschrevenpersonen/" + userContext.user.bsn + "?expand=ouders,kinderen", {
