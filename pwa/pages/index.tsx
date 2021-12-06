@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from '@mui/material/Grid';
 
 import ActionMenu from 'components/common/actionmenu';
@@ -25,6 +25,8 @@ export default function Index() {
   }
 
   let userContext = useUserContext();
+
+  useEffect(() => {console.log(context)}, []);
 
 
   return (<>
@@ -56,20 +58,23 @@ export default function Index() {
         </Grid>
         <Grid item xs={12}>
           <Box style={{ padding: '15px', background: '#157C68', width: '265px', marginTop: '20px' }}>
+            {
+              context.baseUrl !== null && context.baseUrl != undefined &&
+              <Link
+                href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "?state=8412312632"}
+                style={{ textDecoration: 'none !important' }}>
+                <img src="/digid_button.svg" width='55px' height='55px'  />
+                <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
+                  INLOGGEN
+                </b>
+              </Link>
+            }
 
-            <Link
-              href={context.baseUrl + "/digid/login?returnUrl=" + context.frontendUrl + "?state=8412312632"}
-              style={{ textDecoration: 'none !important' }}>
-               <img src="/digid_button.svg" width='55px' height='55px'  />
-               <b style={{ textAlign: 'center', color: 'white',  verticalAlign: 'middle', paddingLeft: '45px'}}>
-                 INLOGGEN
-              </b>
-            </Link>
           </Box>
         </Grid>
         <Grid item xs={12}>
           <Typography style={{color: '#A80A2D', marginTop: '20px'}} variant="h4" component="h4">
-            Wat moet u weten 
+            Wat moet u weten
           </Typography>
         </Grid>
         <Grid item xs={12}>

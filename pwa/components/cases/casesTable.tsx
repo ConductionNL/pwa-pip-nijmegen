@@ -2,30 +2,63 @@ import React, {useEffect} from 'react';
 import {DataGrid, GridRenderCellParams} from '@mui/x-data-grid';
 import {useGet} from "restful-react";
 import {Link} from "@mui/material";
+import {useAppContext} from "../context/state";
+import {useUserContext} from "../context/userContext";
+import {DossierModal} from "./DossierModal";
 
 export default function CasesTable() {
 
-  let { data: cases } = useGet({
-    path: "gateways/cases"
-  });
+  const context = useAppContext();
+  const userContext = useUserContext();
 
-  /* lets catch hydra */
-  if (cases != null && cases["hydra:member"] !== undefined) {
-    cases = cases["hydra:member"];
+  const [dossiers, setDossiers] = React.useState(null);
+
+  const getDossiers = () => {
+    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "bsns": [
+          '693789128'
+        ],
+      })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        let dossiers = data.result.content;
+
+        for (let i = 0; i < dossiers.length; i++) {
+          dossiers[i].id = i;
+        }
+
+        console.log(dossiers);
+
+        setDossiers(dossiers);
+      });
   }
 
+  useEffect(() => {
+    getDossiers();
+  }, []);
+
   const columns = [
-    { field: 'referenceIds.id', headerName: 'ID', flex: 1, hide: true },
-    { field: 'referenceIds.description', headerName: 'ID', flex: 1, hide: true },
+    { field: 'id', headerName: 'ID', flex: 1, hide: true },
     {
-      field: 'type.code',
+      field: 'type.description',
       headerName: 'Type',
       flex: 1,
+      valueGetter: (params) => {
+        return params.getValue(params.id, "type").description;
+      }
     },
     {
-      field: 'status.code',
+      field: 'status.description',
       headerName: 'Status',
       flex: 1,
+      valueGetter: (params) => {
+        return params.getValue(params.id, "status").description;
+      }
     },
     {
       field: 'startDate',
@@ -45,41 +78,34 @@ export default function CasesTable() {
       ),flex: 1, float: 'right'},
   ];
 
-  function createData(type, status, startdatum, id) {
-    return {type, status, startdatum, id};
-  }
-
-  const rows = [
-    createData('intra_mun_relocation', 'created', '2019-08-24', 1),
-    createData('Verhuizen', 'created', '2019-08-24', 2),
-  ];
 
   return (
-    <div style={{ height: 400, width: '100%', color: 'black' }}>
-      { rows ?
-        (
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
-            checkboxSelection
-            disableSelectionOnClick
-          />
-        )
-        :
-        (
-          <DataGrid
-            rows={[]}
-            loading={true}
-            columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
-            checkboxSelection
-            disableSelectionOnClick
-          />
-        )
-      }
-    </div>
+    <>
+      <div style={{ height: 400, width: '100%', color: 'black' }}>
+        { dossiers ?
+          (
+            <DataGrid
+              style={{backgroundColor:  "white"}}
+              rows={dossiers}
+              columns={columns}
+              pageSize={100}
+              rowsPerPageOptions={[100]}
+              disableSelectionOnClick
+            />
+          )
+          :
+          (
+            <DataGrid
+              rows={[]}
+              loading={true}
+              columns={columns}
+              pageSize={100}
+              rowsPerPageOptions={[100]}
+              disableSelectionOnClick
+            />
+          )
+        }
+      </div>
+    </>
   );
 }

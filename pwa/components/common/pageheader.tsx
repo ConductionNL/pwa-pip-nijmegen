@@ -4,27 +4,40 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import List from "@mui/material/List";
+import {useUserContext} from "../context/userContext";
 
-const PageHeader = ({ title="Welcome to Demodam!", h1=false, description="default-description"}) => {
+const PageHeader = ({ title="Welcome to Demodam!", crumbs=[], h1=false, description="default-description"}) => {
+  let userContext = useUserContext();
 
-    return (
+  return (
     <>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/user" >
+        <Link color="inherit" href="/" >
           Home
         </Link>
-        <Typography color="textPrimary">{title}</Typography>
-      </Breadcrumbs>
         {
-          h1 == true ?
-            <Typography sx={{marginTop: "15px"}} variant="h1">
-          {title}
-            </Typography> :
-            <Typography sx={{ marginTop: "15px" }} variant="h4">
+          crumbs.map(crumb => {
+            return crumb.link !== undefined ?
+              <Link color="inherit" href={crumb.link}>
+                {crumb.name}
+              </Link>
+              :
+              <Typography color="textPrimary">
+                {crumb.name}
+              </Typography>
+          })
+        }
+
+      </Breadcrumbs>
+      {
+        h1 == true ?
+          <Typography variant="h1">
+            {title}
+          </Typography> :
+          <Typography variant="h4">
             {title}
           </Typography>
       }
-
     </>
   );
 

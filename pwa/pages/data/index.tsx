@@ -81,8 +81,6 @@ function Index() {
         } else {
           setUser(data);
         }
-        console.log('BRP Persoon:')
-        console.log(data);
       });
   }
 
@@ -94,8 +92,6 @@ function Index() {
       .then(response => response.json())
       .then((data) => {
         setUser(data);
-        console.log('BRP Persoon without expand:')
-        console.log(data);
       });
   }
 
@@ -109,7 +105,11 @@ function Index() {
           </Grid>
         </Hidden>
         <Grid item sm={12} md={9}>
-          <PageHeader title={title} />
+          <PageHeader title={title} crumbs={[
+            {
+              name: 'Mijn gegevens'
+            }
+          ]} />
           <Divider style={{marginTop: 20}}/>
           {
             user !== null &&

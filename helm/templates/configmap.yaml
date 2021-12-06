@@ -10,8 +10,3 @@ data:
   {{- else }}
   gateway-location: {{ .Values.gateway.location }}
   {{- end }}
-  me-url: {{ .Values.pwa.meUrl }}
-  api-url: {{ .Values.pwa.apiUrl }}
-  base-url: {{ .Values.pwa.baseUrl }}
-  frontend-url: {{ .Values.pwa.frontendUrl }}
-  organization: {{ .Values.pwa.organization }}
