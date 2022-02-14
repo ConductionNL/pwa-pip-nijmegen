@@ -35,23 +35,24 @@ export default function DocumentsTable(props) {
   const context = useAppContext();
 
   const getDocuments = () => {
-    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/' + props.dossier + '/documents', {
-      method: 'GET',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-    })
-      .then(response => response.json())
-      .then((data) => {
-        let documents = data;
+    // fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/' + props.dossier + '/documents', {
+    //   method: 'GET',
+    //   credentials: 'include',
+    //   headers: { 'Content-Type': 'application/json' },
+    // })
+    //   .then(response => response.json())
+    //   .then((data) => {
+    //     let documents = data;
 
-        for (let i = 0; i < documents.length; i++) {
-          documents[i].id = i;
-        }
+    //     for (let i = 0; i < documents.length; i++) {
+    //       documents[i].id = i;
+    //     }
 
-        console.log(documents);
+    //     console.log(documents);
 
-        setDocuments(documents);
-      });
+    //     setDocuments(documents);
+    //   });
+    setDocuments([{id: '1b33aa5a-f6cb-499b-807e-27dea3432900', title: 'notities', filename: 'notities_1b33aa5a-f6cb-499b-807e-27dea3432900.pdf', content: 'bewijs'}])
   }
 
   useEffect(() => {

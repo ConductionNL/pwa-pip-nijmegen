@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from "@mui/material/Button";
-import {documentDownload} from "../utility/DocumentDownload";
-import {useAppContext} from "../context/state";
-import {ClaimModal} from "./ClaimModal";
-import {useUserContext} from "../context/userContext";
+import { documentDownload } from "../utility/DocumentDownload";
+import { useAppContext } from "../context/state";
+import { ClaimModal } from "./ClaimModal";
+import { useUserContext } from "../context/userContext";
 
 export default function ClaimsTable() {
 
@@ -14,18 +14,34 @@ export default function ClaimsTable() {
   const [claims, setClaims] = React.useState(null);
 
   useEffect(() => {
-    fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + userContext.user.bsn, {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    })
-      .then(response => response.json())
-      .then((data) => {
-        setClaims(data['hydra:member']);
-        console.log('Certs:')
-        console.log(data)
-      });
+    if (userContext?.user?.bsn) {
+      fetch(context.apiUrl + "/gateways/waardepapieren-register/certificates?person=" + userContext.user.bsn, {
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then((data) => {
+          setClaims(data['hydra:member']);
+          console.log('Certs:')
+          console.log(data)
+        })
+        .catch((error) => {
+          console.log("Error:", error);
+          let claims = [
+            { id: '123', type: 'Uitreksel', status: { description: 'Accepted' }, dateCreated: '24/12/2021' },
+            { id: '124', type: 'Trouwen', status: { description: 'Pending' }, startDate: '24/12/2021' }
+          ];
+          setClaims(claims);
+        });
+    } else {
+      let claims = [
+        { id: '123', type: 'Akte van geboorte', dateCreated: '24/12/2021' },
+        { id: '124', type: 'Akte van huwelijk', dateCreated: '24/12/2021' }
+      ];
+      setClaims(claims);
+    }
   }, []);
 
   //const refreshTable = () => {
@@ -56,9 +72,9 @@ export default function ClaimsTable() {
       headerName: 'Aangemaakt op',
       flex: 1,
       valueFormatter: (params) => {
-        let valueFormatted = new Date(params.value);
-        let result = valueFormatted.toLocaleString("en-GB");
-        return `${valueFormatted}`;
+        // let valueFormatted = new Date(params.value);
+        // let result = valueFormatted.toLocaleString("en-GB");
+        return `${params.value}`;
       },
     },
     {
@@ -106,16 +122,16 @@ export default function ClaimsTable() {
       {/*<ClaimModal refreshTable={refreshTable} />*/}
 
       <div style={{ height: 400, width: '100%' }}>
-          { claims !== null ? (
-            <DataGrid
-             rows={claims}
-             columns={columns}
-             pageSize={100}
-             rowsPerPageOptions={[100]}
-              disableSelectionOnClick
-              sortModel={[{ field: 'dateCreated', sort: 'desc' }]}
-            />
-          )
+        {claims !== null ? (
+          <DataGrid
+            rows={claims}
+            columns={columns}
+            pageSize={100}
+            rowsPerPageOptions={[100]}
+            disableSelectionOnClick
+            sortModel={[{ field: 'dateCreated', sort: 'desc' }]}
+          />
+        )
           :
           (
             <DataGrid

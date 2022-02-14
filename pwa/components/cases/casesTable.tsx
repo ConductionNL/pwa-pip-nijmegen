@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {DataGrid, GridRenderCellParams} from '@mui/x-data-grid';
-import {useGet} from "restful-react";
-import {Link} from "@mui/material";
-import {useAppContext} from "../context/state";
-import {useUserContext} from "../context/userContext";
-import {DossierModal} from "./DossierModal";
+import React, { useEffect } from 'react';
+import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
+import { useGet } from "restful-react";
+import { Link } from "@mui/material";
+import { useAppContext } from "../context/state";
+import { useUserContext } from "../context/userContext";
+import { DossierModal } from "./DossierModal";
 
 export default function CasesTable() {
 
@@ -14,28 +14,35 @@ export default function CasesTable() {
   const [dossiers, setDossiers] = React.useState(null);
 
   const getDossiers = () => {
-    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "bsns": [
-          '693789128'
-        ],
-      })
-    })
-      .then(response => response.json())
-      .then((data) => {
-        let dossiers = data.result.content;
 
-        for (let i = 0; i < dossiers.length; i++) {
-          dossiers[i].id = i;
-        }
-
-        console.log(dossiers);
-
-        setDossiers(dossiers);
-      });
+    let dossiers = [
+      { id: 'f25e67e5-3a87-41ce-a68d-e6e8f5a0b027', dossierId: '412623473', type: { description: 'Bezwaarschrift' }, status: { description: 'Accepted' }, startDate: '24/12/2021' }
+    ];
+    setDossiers(dossiers);
+    // fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
+    //   method: 'POST',
+    //   credentials: 'include',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     "bsns": [
+    //       '693789128'
+    //     ],
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then((data) => {
+    //     if (data?.result?.content) {
+    //       console.log(data.result.content);
+    //       setDossiers(data.result.content);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error:", error);
+    //     let dossiers = [
+    //       { id: '123', type: { description: 'Bezwaarschrift' }, status: { description: 'Accepted' }, startDate: '12/01/2022' }
+    //     ];
+    //     setDossiers(dossiers);
+    //   });;
   }
 
   useEffect(() => {
@@ -67,7 +74,7 @@ export default function CasesTable() {
     },
     {
       field: 'dossierId',
-      headerName: ' ',renderCell: (params: GridRenderCellParams) => (
+      headerName: ' ', renderCell: (params: GridRenderCellParams) => (
         <strong>
           <Link
             href={"/cases/" + params.value}
@@ -75,17 +82,18 @@ export default function CasesTable() {
             View
           </Link>
         </strong>
-      ),flex: 1, float: 'right'},
+      ), flex: 1, float: 'right'
+    },
   ];
 
 
   return (
     <>
       <div style={{ height: 400, width: '100%', color: 'black' }}>
-        { dossiers ?
+        {dossiers ?
           (
             <DataGrid
-              style={{backgroundColor:  "white"}}
+              style={{ backgroundColor: "white" }}
               rows={dossiers}
               columns={columns}
               pageSize={100}

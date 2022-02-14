@@ -21,20 +21,21 @@ const Product = () => {
   const context = useAppContext();
 
   const getDossier = () => {
-    fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "dossierIds": [
-          id
-        ],
-      })
-    })
-      .then(response => response.json())
-      .then((data) => {
-        setDossier(data.result.content[0]);
-      });
+    // fetch(context.apiUrl + '/gateways/vrijbrp_dossiers/api/v1/dossiers/search', {
+    //   method: 'POST',
+    //   credentials: 'include',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     "dossierIds": [
+    //       id
+    //     ],
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then((data) => {
+    //     setDossier(data.result.content[0]);
+    //   });
+      setDossier({id: 'f25e67e5-3a87-41ce-a68d-e6e8f5a0b027',dossierId: '412623473', type: { description: 'Bezwaarschrift' }, status: {description: 'Accepted'}, startDate: '24/12/2021' });
   }
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Product = () => {
     }
   }, [id]);
 
-  let title = dossier !== null ? dossier.dossierId : "aan het laden.."
+  let title = dossier !== null ? `Zaaknummer: ${dossier.dossierId}` : "aan het laden.."
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
